@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/reloader'
 
 number = rand(0..100)
 
