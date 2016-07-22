@@ -14,8 +14,10 @@
 			</form>
 		</p>
 		<p>
-			<!-- The secret number is <%= number %>. -->
 			<%= message %>
 		</p>
+			<% if cheat %>
+				<p>The secret number is <%= number %>.</p>
+			<% end %>
 	</body>
 </html>

@@ -32,5 +32,5 @@ get '/' do
   elsif guess.to_i == number
     new_game
   end
-  erb :index, :locals => {:number => number, :message => message, :background => background}
+  erb :index, :locals => {:number => number, :message => message, :background => background, :cheat => params["cheat"] == "true"}
 end
