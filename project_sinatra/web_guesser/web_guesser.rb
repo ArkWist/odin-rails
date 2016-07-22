@@ -2,7 +2,12 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 number = rand(100)
-#@@remaining = 0
+@@remaining = 5
+
+def new_game
+  number = rand(100)
+  @@remaining = 5
+end
 
 def check_guess(guess, number)
   message = if !guess.to_i.to_s == guess then ""
@@ -17,9 +22,15 @@ def check_background(guess, number)
 end
 
 get '/' do
+  @@remaining -= 1
   guess = params["guess"]
   message = check_guess(guess, number)
   background = check_background(guess, number)
+  if @@remaining == 0 && guess.to_i != number
+    new_game
+    message = "You lose. Starting a new game."
+  elsif guess.to_i == number
+    new_game
+  end
   erb :index, :locals => {:number => number, :message => message, :background => background}
 end
-
