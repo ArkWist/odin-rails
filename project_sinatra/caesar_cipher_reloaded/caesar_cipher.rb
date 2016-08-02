@@ -1,10 +1,5 @@
 require 'sinatra'
 
-get '/' do
-  "Hello, World!"
-end
-
-=begin
 def caesar_cipher(text, shift)
   code = text.each_char.map { |letter| letter = encode(letter, shift) }
   code.join
@@ -27,9 +22,11 @@ def bounded_shift(letter, shift, range_a, range_z)
   letter
 end
 
-print "Enter input string: "
-original_string = gets.chomp
-print "Enter shift factor: "
-shift_factor = gets.chomp
-puts "Result: #{caesar_cipher(original_string, shift_factor)}"
-=end
+get '/' do
+  starting = params["starting"]
+  shift = params["shift"]
+  if !starting.nil? && !shift.nil?
+    encoded = caesar_cipher(starting, shift.to_i)
+  end
+  erb :index, :locals => {:starting => starting, :shift => shift, :encoded => encoded}
+end
