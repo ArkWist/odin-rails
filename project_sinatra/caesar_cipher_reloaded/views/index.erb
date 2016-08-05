@@ -1,14 +1,17 @@
 <html>
     <head>
+        <title>Caesar Cipher</title>
     </head>
     <body>
+        <h1>Caesar Cipher</h1>
         <p>
             <form>
-                <input type="text" name="starting" />
-                <input type="text" name="shift" />
+                <input type="text" name="starting" placeholder="Message to encode" />
+                <input type="number" name="shift" value="0" />
                 <input type="submit" value="Encode" />
             </form>
         </p>
+        <h2>Encoded message:</h2>
         <p>
             <%= encoded %>
         </p>
