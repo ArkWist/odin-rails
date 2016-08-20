@@ -2,32 +2,79 @@ require 'sinatra'
 
 enable :sessions
 
-dictionary = File.read("5desk.txt").readlines
+dictionary = File.read('5desk.txt').readlines
 
 get '/' do
-  right_answer = session[:right_answer]
-  right_guesses = session[:right_guesses]
-  guessed_letters = session[:guessed_letters]
-  wrong_guesses = session[:wrong_guesses]
-  turns_left = session[:turns_left]
+  handle_game_finish
+  erb :index
+  #erb :index, locals: { progress: progress,
+  #                      guesses: guesses,
+  #                      turns: turns }
 end
 
-guess
-right_guesses
-answer_word
-used_letters
-turns_left
+pos '/' do
+  check_guess(params['guess'])
+  redirect to('/')
+end
+
+
+get '/newgame' do
+  session[:answer] = choose_random_word(dictionary)
+  session[:progress] = '_' * session[:answer].length
+  session[:guesses] = []
+  session[:bad_guesses] = []
+  session[:turns] = 9
+  redirect to('/')
+end
+
+get '/win' do
+  erb :win
+end
+
+get '/lose' do
+  erb :lose
+end
 
 
 
+def handle_game_finish
+  if session[:progress] == session[:answer]
+    redirect to('/win')
+  elsif session[:turns] <= 0
+    redirect to('/lose')
+  end
+end
 
-def get_word_from_dictionary(dictionary)
+def choose_random_word(dictionary)
   word = dictionary[rand(dictionary.length)]
   if !word.length.between?(5, 12)
     word = get_word_from_dictionary(dictionary)
   end
   word
 end
+
+def check_guess(guess)
+  if !('a'..'z').to_a.include?(guess.downcase)
+    #return
+  elsif session[:guesses].include?(guess.downcase)
+    #return
+  elsif session[:answer].include?(guess.downcase)
+    session[:answer].each_with_index do |letter, i|
+    if letter == guess.downcase
+      session[:progress][i] = guess.downcase
+    end
+    session[:guesses] << guess.downcase
+  end
+  else
+    session[:turns] -= 1
+    session[:guesses] << guess.downcase
+    session[:bad_guesses] << guess.downcase
+  end
+end
+
+
+
+
   
 
 
