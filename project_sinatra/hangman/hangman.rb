@@ -1,26 +1,39 @@
-# Hangman
-#
-# git remote add origin git@github.com:ArkWist/hangman.git
-# git push -u origin master
-#
-# Player can save game anytime
-# Option to load a previous game
-#
-# ------------------------------
+require 'sinatra'
 
+enable :sessions
 
-def random_word
-  dictionary = File.read("5desk.txt").readlines
-  randominator = Random.new
-  line = randominator.rand(dictionary.length)
+dictionary = File.read("5desk.txt").readlines
 
-  until dictionary[line].length.between?(5, 12)
-    dictionary.delete_at[line]
-    line = randominator.rand(dictionary.length)
-  end
-
-  word = dictionary[line]
+get '/' do
+  right_answer = session[:right_answer]
+  right_guesses = session[:right_guesses]
+  guessed_letters = session[:guessed_letters]
+  wrong_guesses = session[:wrong_guesses]
+  turns_left = session[:turns_left]
 end
+
+guess
+right_guesses
+answer_word
+used_letters
+turns_left
+
+
+
+
+def get_word_from_dictionary(dictionary)
+  word = dictionary[rand(dictionary.length)]
+  if !word.length.between?(5, 12)
+    word = get_word_from_dictionary(dictionary)
+  end
+  word
+end
+  
+
+
+
+
+
 
 def display_board(right, wrong, mercy)
   padding = " " * 4
