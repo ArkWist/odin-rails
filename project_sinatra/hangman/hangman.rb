@@ -2,77 +2,134 @@ require 'sinatra'
 
 enable :sessions
 
-dictionary = File.read('5desk.txt').readlines
-
 get '/' do
-  handle_game_finish
-  erb :index
-  #erb :index, locals: { progress: progress,
-  #                      guesses: guesses,
-  #                      turns: turns }
+  if session[:game].nil?
+    redirect to '/newgame'
+  else
+  session[:guess] = params['guess']
+  session[:guess].downcase! if session[:guess]
+  session[:game].check_guess(session[:guess])
+  erb :index, locals: { progress: session[:game].progress,
+                        bad_guesses: session[:game].bad_guesses,
+                        tries: session[:game].tries,
+                        status: session[:game].status,
+                        answer: session[:game].get_answer }
+  end
 end
 
-pos '/' do
-  check_guess(params['guess'])
-  redirect to('/')
-end
+
+##get '/' do
+##  game.check_guess
+  #handle_game_finish
+  #erb :index
+##  erb :index, locals: { progress: progress,
+##                        bad_guesses: bad_guesses,
+##                        tries: tries }
+##end
+
+#post '/' do
+#  check_guess(params['guess'])
+#  redirect to('/')
+#end
 
 
 get '/newgame' do
-  session[:answer] = choose_random_word(dictionary)
-  session[:progress] = '_' * session[:answer].length
-  session[:guesses] = []
-  session[:bad_guesses] = []
-  session[:turns] = 9
+  session[:game] = Hangman.new
   redirect to('/')
+  #session[:answer] = choose_random_word(dictionary)
+  #session[:progress] = '_' * session[:answer].length
+  #session[:guesses] = []
+  #session[:bad_guesses] = []
+  #session[:tries] = 9
+  #redirect to('/')
 end
 
-get '/win' do
-  erb :win
-end
+#get '/win' do
+#  erb :win
+#end
 
-get '/lose' do
-  erb :lose
-end
+#get '/lose' do
+#  erb :lose
+#end
 
 
+class Hangman
 
-def handle_game_finish
-  if session[:progress] == session[:answer]
-    redirect to('/win')
-  elsif session[:turns] <= 0
-    redirect to('/lose')
+  attr_reader :progress, :bad_guesses, :tries, :status
+
+  def initialize(tries = 9, min = 5, max = 12)
+    @answer = random_word_between(min, max)
+    @progress = '_' * @answer.length
+    @guesses = []
+    @bad_guesses = []
+    @tries = tries
+    @status = nil
   end
-end
 
-def choose_random_word(dictionary)
-  word = dictionary[rand(dictionary.length)]
-  if !word.length.between?(5, 12)
-    word = get_word_from_dictionary(dictionary)
-  end
-  word
-end
-
-def check_guess(guess)
-  if !('a'..'z').to_a.include?(guess.downcase)
-    #return
-  elsif session[:guesses].include?(guess.downcase)
-    #return
-  elsif session[:answer].include?(guess.downcase)
-    session[:answer].each_with_index do |letter, i|
-    if letter == guess.downcase
-      session[:progress][i] = guess.downcase
+  def check_guess(guess)
+    if guess.nil?
+      #return
+    elsif !('a'..'z').to_a.include?(guess)
+      #return
+    elsif @guesses.include?(guess)
+      #return
+    elsif @answer.include?(guess)
+      new_progress = @progress.split(//)
+      @answer.split(//).each_with_index do |letter, i|
+        if letter == guess
+          new_progress[i] = guess
+        end
+      end
+      @progress = new_progress.join
+      @guesses << guess
+    else
+      @tries -= 1
+      @guesses << guess
+      @bad_guesses << guess
     end
-    session[:guesses] << guess.downcase
+    check_game_end
   end
-  else
-    session[:turns] -= 1
-    session[:guesses] << guess.downcase
-    session[:bad_guesses] << guess.downcase
+
+  def get_answer
+    if @status == "lose"
+      answer = @answer
+    else
+      answer = nil
+    end
   end
+
+  private
+
+  def check_game_end
+    if @progress == @answer
+      @status = "win"
+    elsif @tries <= 0
+      @status = "lose"
+    end
+  end
+
+  def random_word_between(min, max)
+    #dictionary = File.read('5desk.txt').readlines
+    dictionary = File.open('5desk.txt', 'r').readlines
+    word = ""
+    until word.length.between?(min, max)
+      word = dictionary[rand(dictionary.length)].strip.downcase
+    end
+    word
+  end
+
 end
 
+=begin
 
+  def handle_game_finish
+  ' '
+    if session[:progress] == session[:answer]
+      redirect to('/win')
+    elsif session[:tries] <= 0
+      redirect to('/lose')
+    end
+  end
 
 
   
@@ -177,3 +234,5 @@ else
   puts "You are victorious!"
 end
 puts
+
+=end

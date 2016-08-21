@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Hangman</title>
+    </head>
+    <body>
+        <h1>Hangman</h1>
+        <p>
+            <%= progress.scan(/./).join(' ') %>
+        </p>
+        <% if status == "win" %>
+            <p>You are victorious!</p>
+        <% elsif status == "lose" %>
+            <p>You have been defeated!</p>
+            <p>The answer was <%= answer %>.</p>
+        <% else %>
+            <form>
+                <input type="text" name="guess" pattern="[A-Za-z]{1}" size="2" autofocus/>
+                <input type="submit" value="Guess!"/>
+            </form>
+            <p>
+                <%= tries %>
+                <% if tries != 1 %>
+                    tries
+                <% else %>
+                    try
+                <% end %>
+                left!
+            </p>
+       <% end %>
+        <p>
+            Wrong guesses: <%= bad_guesses.join(', ') %>
+        </p>
+        <p>
+            <a href="<%= url("/save") %>" class="button">Save</a>
+            <a href="<%= url("/load") %>" class="button">Load</a>
+            <a href="<%= url("/newgame") %>" class="button">New Game</a>
+        </p>
+    </body>
+</html>
+
