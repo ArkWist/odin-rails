@@ -1,6 +1,7 @@
 require 'sinatra'
 
 enable :sessions
+set :session_secret, 'secret key'
 
 get '/' do
   if session[:game].nil?
@@ -18,39 +19,11 @@ get '/' do
 end
 
 
-##get '/' do
-##  game.check_guess
-  #handle_game_finish
-  #erb :index
-##  erb :index, locals: { progress: progress,
-##                        bad_guesses: bad_guesses,
-##                        tries: tries }
-##end
-
-#post '/' do
-#  check_guess(params['guess'])
-#  redirect to('/')
-#end
-
-
 get '/newgame' do
   session[:game] = Hangman.new
   redirect to('/')
-  #session[:answer] = choose_random_word(dictionary)
-  #session[:progress] = '_' * session[:answer].length
-  #session[:guesses] = []
-  #session[:bad_guesses] = []
-  #session[:tries] = 9
-  #redirect to('/')
 end
 
-#get '/win' do
-#  erb :win
-#end
-
-#get '/lose' do
-#  erb :lose
-#end
 
 
 class Hangman
@@ -121,45 +94,6 @@ class Hangman
 end
 
 =begin
-
-  def handle_game_finish
-  ' '
-    if session[:progress] == session[:answer]
-      redirect to('/win')
-    elsif session[:tries] <= 0
-      redirect to('/lose')
-    end
-  end
-
-
-  
-
-
-
-
-
-
-def display_board(right, wrong, mercy)
-  padding = " " * 4
-  puts
-  puts "#{padding}#{right.join(" ")}"
-  puts
-  puts "#{padding}Wrong: #{wrong.join(", ")}"
-  puts "#{padding}#{mercy} wrong guesses left."
-  puts
-end
-
-def save(right, wrong, mercy, answer)
-  filename = get_filename
-  File.open(filename, "w") do |file|
-    file.puts "right=#{right}"
-    file.puts "wrong=#{wrong}"
-    file.puts "mercy=#{mercy}"
-    file.puts "answer=#{answer}"
-  end
-  puts "#{filename} saved."
-end
-
 def get_filename
   print "Input filename: "
   filename = gets.chomp.downcase + ".sav"
@@ -175,41 +109,6 @@ end
 
 
 ### Program Start ###
-
-answer = random_word
-right = ["_"] * answer.length
-wrong = []
-mercy = 9
-
-print "Load save game? (y/n): "
-if gets.chomp.downcase == "y"
-  filename = get_filename
-  if File.exist?(filename)
-    File.readlines(filename) do |line|
-      case save_var(line)
-      when right
-        right = save_value(line)
-      when wrong
-        wrong = save_value(line)
-      when mercy
-        mercy = save_value(line)
-      when answer
-        answer = save_value(line)
-      end
-    end
-    puts "#{filename} loaded."
-  else
-  puts "#{filename} does not exist."
-end
-    
-until mercy < 0 || !solved.include?("_")
-  display_board(right, wrong, mercy)
-  print "Input guess: "
-  guess = gets.chomp.to_s.downcase
-
-  next if guess.length != 1 && guess != "save"
-  next if right.each.downcase.include?(guess)
-  next if wrong.include?(guess)
 
   if guess == "save"
     save(right, wrong, mercy, answer)
