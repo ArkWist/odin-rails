@@ -18,12 +18,29 @@ get '/' do
   end
 end
 
-
 get '/newgame' do
   session[:game] = Hangman.new
   redirect to('/')
 end
 
+get '/save' do
+  save(session[:game])
+  redirect to('/')
+end
+
+get '/load' do
+  
+end
+
+get 'load/:id' do
+  redirect to('/')
+end
+
+def save(game)
+  #save_name = game.progress
+  save_name = game.progress
+
+end
 
 
 class Hangman
