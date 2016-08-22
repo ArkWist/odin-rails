@@ -38,7 +38,20 @@ end
 
 def save(game)
   #save_name = game.progress
-  save_name = game.progress
+  name = game.progress
+  bad_guesses = game.bad_guesses
+  tries = game.tries
+  Dir.mkdir 'saves' unless Dir.exists? 'saves'
+
+  save_name = Dir.entries('saves').drop(2).
+
+  save_name = Dir.entries('saves').drop(2).sort_by { |s|
+    s.scan(/\d+/).map { |s| s.to_i }.last }
+  save_name = 'saves/#{}'
+
+use game has to make id, so one save per game id?
+yyyy-mm-dd-hh-mm-ss-
+too complicated, just add number
 
 end
 
