@@ -24,36 +24,34 @@ get '/newgame' do
 end
 
 get '/save' do
-  save(session[:game])
+  Dir.mkdir 'saves' unless Dir.exists? 'saves'
+  filename = "#{Dir.glob('saves/*.sav').sort_by { |file| file.scan(/\d+/).map { |id| id.to_i } }.last.to_i + 1}.sav"
+  session[:game].save_to('saves', filename)
   redirect to('/')
 end
 
 get '/load' do
-  
+  if Dir.exist?('saves') && Dir['saves/*'].length > 0
+    saves = Dir.glob('saves/*.{sav}').sort_by { |file| file.scan(/\d+/).map { |id| id.to_i } }.last(10).map { |save| save.split('/')[-1] }
+    saves_progress = saves.map { |save| session[:game].extract_save_progress('saves', save) }
+    erb :load, locals: { dir: 'saves',
+                         saves: saves,
+                         saves_progress: saves_progress }
+  else
+    redirect to('/')
+  end
 end
 
+
 get 'load/:id' do
+  load("#{id}.sav")
   redirect to('/')
 end
 
-def save(game)
-  #save_name = game.progress
-  name = game.progress
-  bad_guesses = game.bad_guesses
-  tries = game.tries
-  Dir.mkdir 'saves' unless Dir.exists? 'saves'
-
-  save_name = Dir.entries('saves').drop(2).
-
-  save_name = Dir.entries('saves').drop(2).sort_by { |s|
-    s.scan(/\d+/).map { |s| s.to_i }.last }
-  save_name = 'saves/#{}'
-
-use game has to make id, so one save per game id?
-yyyy-mm-dd-hh-mm-ss-
-too complicated, just add number
-
+def load(filename)
+  session[:game].load_from('saves', filename)
 end
+
 
 
 class Hangman
@@ -63,7 +61,6 @@ class Hangman
   def initialize(tries = 9, min = 5, max = 12)
     @answer = random_word_between(min, max)
     @progress = '_' * @answer.length
-    @guesses = []
     @bad_guesses = []
     @tries = tries
     @status = nil
@@ -74,7 +71,9 @@ class Hangman
       #return
     elsif !('a'..'z').to_a.include?(guess)
       #return
-    elsif @guesses.include?(guess)
+    elsif @progress.include?(guess)
+      #return
+    elsif @bad_guesses.include?(guess)
       #return
     elsif @answer.include?(guess)
       new_progress = @progress.split(//)
@@ -84,10 +83,8 @@ class Hangman
         end
       end
       @progress = new_progress.join
-      @guesses << guess
     else
       @tries -= 1
-      @guesses << guess
       @bad_guesses << guess
     end
     check_game_end
@@ -100,68 +97,70 @@ class Hangman
       answer = nil
     end
   end
+  
+  def save_to(dir, filename)
+    File.open("#{dir}/#{filename}", 'w') do |file|
+      file.puts "progress=#{@progress}"
+      file.puts "bad_guesses=#{@bad_guesses.join(',')}"
+      file.puts "tries=#{@tries}"
+      file.puts "answer=#{@answer}"
+      file.puts "status=#{status}"
+    end
+  end
+  
+  def load_from(dir, filename)
+    if File.exist?("#{dir}/#{filename}")
+      File.open("#{dir}/#{filename}", 'r').readlines.each do |line|
+        value = save_value(line)
+        case save_var(line)
+        when 'progress' then @progress = value
+        when 'bad_guesses' then @bad_guesses = value.split(',')
+        when 'tries' then @tries = value.to_i
+        when 'answer' then @answer = value
+        when 'status' then @status = value
+        end
+      end
+    end
+  end
+
+  def extract_save_progress(dir, filename)
+    progress = 'Invalid Save'
+    if File.exist?("#{dir}/#{filename}")
+      File.open("#{dir}/#{filename}", 'r').readlines.each do |line|
+        if save_var(line) == 'progress'
+          progress = sav_value(line.chomp)
+        end
+      end
+    end
+    progress
+  end
 
   private
 
   def check_game_end
     if @progress == @answer
-      @status = "win"
+      @status = 'win'
     elsif @tries <= 0
-      @status = "lose"
+      @status = 'lose'
     end
   end
 
   def random_word_between(min, max)
-    #dictionary = File.read('5desk.txt').readlines
-    dictionary = File.open('5desk.txt', 'r').readlines
+    dictionary = File.open('public/5desk.txt', 'r').readlines
     word = ""
     until word.length.between?(min, max)
       word = dictionary[rand(dictionary.length)].strip.downcase
     end
     word
   end
-
-end
-
-=begin
-def get_filename
-  print "Input filename: "
-  filename = gets.chomp.downcase + ".sav"
-end
-
-def save_var(line)
-  line.split("=").at(0)
-end
-
-def sav_value(line)
-  line.split("=").at(1)
-end
-
-
-### Program Start ###
-
-  if guess == "save"
-    save(right, wrong, mercy, answer)
-  elsif answer.downcase.to_a.include?(guess)
-    answer.each_with_index do |letter, index|
-      right[index] = answer[index] if guess == letter.downcase
-    end
-  else
-    mercy -= mercy
-    wrong.push(guess)
+  
+  def save_var(line)
+    line.split("=").at(0)
   end
+  
+  def sav_value(line)
+    line.split("=").at(1)
+  end
+
 end
 
-puts
-if mercy < 0
-  puts "You lose!"
-  puts
-  puts "The answer was: #{answer}"
-else
-  puts "Congratulations!"
-  puts
-  puts "You are victorious!"
-end
-puts
-
-=end
