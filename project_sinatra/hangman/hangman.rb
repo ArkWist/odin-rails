@@ -45,7 +45,7 @@ get '/load' do
 end
 
 # doesn't get called
-get 'load/:filename' do
+get '/load/:filename' do
   session[:game].load_from('saves', params['filename'])
   redirect to('/')
 end
@@ -125,7 +125,7 @@ class Hangman
     if File.exist?("#{dir}/#{filename}")
       File.open("#{dir}/#{filename}", 'r').readlines.each do |line|
         if save_var(line) == 'progress'
-          progress = sav_value(line.chomp)
+          progress = save_value(line.chomp)
         end
       end
     end
@@ -155,7 +155,7 @@ class Hangman
     line.split("=").at(0)
   end
   
-  def sav_value(line)
+  def save_value(line)
     line.split("=").at(1)
   end
 
