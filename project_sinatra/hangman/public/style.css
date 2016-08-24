@@ -9,7 +9,8 @@ h1{
 
 #progress{
     margin: 1em;
-    font-size: 2.5em; }
+    font-size: 3em;
+    font-family: monospace; }
 
 .right_letter{
     color: #ff5252; }
@@ -31,16 +32,19 @@ h1{
 .wrong_letter{
     color: #ff5252; }
 
-#savestates{}
+#savestates{
+    display: inline-block;
+    width: 30em; }
 
 .buttons a{
+    color: #fff;
     display: inline-block;
     width: 7em;
 	margin: .25em .25em;
     padding: .25em .5em; 
     text-decoration: none; }
 
-.buttons a:hover{
+.buttons a:active{
     text-decoration: underline; }
 
 nav{
@@ -49,13 +53,12 @@ nav{
 div.buttons a{
 	background-color: #40c4ff; }
 
-div.buttons a:active{
+div.buttons a:hover{
     background-color: #80d8ff; }
 
 nav.buttons a{
-    color: #fff;
 	background-color: #ff5252; }
 
-nav.buttons a:active{
+nav.buttons a:hover{
     background-color: #ff8a80; }
 

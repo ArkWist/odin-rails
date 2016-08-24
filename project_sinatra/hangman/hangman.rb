@@ -23,15 +23,16 @@ get '/newgame' do
   redirect to('/')
 end
 
+# replaces number 1
 get '/save' do
   Dir.mkdir 'saves' unless Dir.exists? 'saves'
-  filename = "#{Dir.glob('saves/*.sav').sort_by { |file| file.scan(/\d+/).map { |id| id.to_i } }.last.to_i + 1}.sav"
+  filename = "#{Dir.glob('saves/*.sav').sort_by { |file| file.scan(/\d+/).map { |id| id.to_i } }.last.scan(/\d+/).last.to_i + 1 }.sav"
   session[:game].save_to('saves', filename)
   redirect to('/')
 end
 
 get '/load' do
-  file_number = 12
+  files_number = 12
   if Dir.exist?('saves') && Dir['saves/*'].length > 0
     saves = Dir.glob('saves/*.{sav}').sort_by { |file| file.scan(/\d+/).map { |id| id.to_i } }.last(files_number).map { |save| save.split('/')[-1] }
     saves_progress = saves.map { |save| session[:game].extract_save_progress('saves', save) }
@@ -43,6 +44,7 @@ get '/load' do
   end
 end
 
+# doesn't get called
 get 'load/:filename' do
   session[:game].load_from('saves', params['filename'])
   redirect to('/')
