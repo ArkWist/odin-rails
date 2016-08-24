@@ -1,45 +1,61 @@
 body{
-    text-align: center; }
+    text-align: center;
+    font-family: sans-serif; }
 
 h1{
-    margin: 5em; }
+    margin-top: 1em;
+    font-size: 4em;
+    text-transform: uppercase; }
 
 #progress{
-    
-}
+    margin: 1em;
+    font-size: 2.5em; }
+
+.right_letter{
+    color: #ff5252; }
+
+#guess{}
 
 #win_lose{
-
-}
+    font-size: 1.25em; }
 
 #tries{
+    font-size: 1.25em; }
 
-}
+#tries_number{}
 
-#tries_number{
+#wrong_guesses{}
 
-}
+#wrong_guesses_list{}
 
-#wrong_guesses{
+.wrong_letter{
+    color: #ff5252; }
 
-}
+#savestates{}
 
-#wrong_guesses_list{
+.buttons a{
+    display: inline-block;
+    width: 7em;
+	margin: .25em .25em;
+    padding: .25em .5em; 
+    text-decoration: none; }
 
-}
-
-#savestates{
-
-}
-
-div.buttons a{
-
-}
+.buttons a:hover{
+    text-decoration: underline; }
 
 nav{
-    margin: 1em; }
+    margin: 2em 1em; }
+
+div.buttons a{
+	background-color: #40c4ff; }
+
+div.buttons a:active{
+    background-color: #80d8ff; }
 
 nav.buttons a{
+    color: #fff;
+	background-color: #ff5252; }
 
-}
+nav.buttons a:active{
+    background-color: #ff8a80; }
 

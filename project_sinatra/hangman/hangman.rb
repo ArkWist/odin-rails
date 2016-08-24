@@ -10,11 +10,11 @@ get '/' do
   session[:guess] = params['guess']
   session[:guess].downcase! if session[:guess]
   session[:game].check_guess(session[:guess])
-  erb :index, locals: { progress: session[:game].progress,
+  erb :index, :layout => true, locals: { progress: session[:game].progress,
                         bad_guesses: session[:game].bad_guesses,
                         tries: session[:game].tries,
                         status: session[:game].status,
-                        answer: session[:game].get_answer }
+                        answer: session[:game].get_answer }  
   end
 end
 
@@ -31,8 +31,9 @@ get '/save' do
 end
 
 get '/load' do
+  file_number = 12
   if Dir.exist?('saves') && Dir['saves/*'].length > 0
-    saves = Dir.glob('saves/*.{sav}').sort_by { |file| file.scan(/\d+/).map { |id| id.to_i } }.last(10).map { |save| save.split('/')[-1] }
+    saves = Dir.glob('saves/*.{sav}').sort_by { |file| file.scan(/\d+/).map { |id| id.to_i } }.last(files_number).map { |save| save.split('/')[-1] }
     saves_progress = saves.map { |save| session[:game].extract_save_progress('saves', save) }
     erb :load, locals: { dir: 'saves',
                          saves: saves,
@@ -42,16 +43,10 @@ get '/load' do
   end
 end
 
-
-get 'load/:id' do
-  load("#{id}.sav")
+get 'load/:filename' do
+  session[:game].load_from('saves', params['filename'])
   redirect to('/')
 end
-
-def load(filename)
-  session[:game].load_from('saves', filename)
-end
-
 
 
 class Hangman

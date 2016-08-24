@@ -1,11 +1,13 @@
-<html>
-    <head>
-        <title>Hangman</title>
-    </head>
-    <body>
-        <h1>Hangman</h1>
         <p id="progress">
-            <%= progress.scan(/./).join(' ') %>
+            <% array = [] %>
+            <% progress.split(//).each do |letter| %>
+                <% if letter == '_' %>
+                    <% array << " #{letter} " %>
+                <% else %>
+                    <% array << " <span class='right_letter'>#{letter}</span> " %>
+                <% end %>
+            <% end %>
+            <%= array.join.strip %>
         </p>
         <% if status == "win" %>
             <p id="win_lose">You are victorious!</p>
@@ -13,9 +15,9 @@
             <p id="win_lose">You have been defeated!</p>
             <p>The answer was <%= answer %>.</p>
         <% else %>
-            <form>
+            <form id="guess">
                 <input type="text" name="guess" pattern="[A-Za-z]{1}" size="2" autofocus/>
-                <input type="submit" value="Guess!"/>
+                <input type="submit" value="Guess"/>
             </form>
             <p id="tries">
                 <span id="tries_number"><%= tries %></span>
@@ -28,12 +30,12 @@
             </p>
         <% end %>
         <p id="wrong_guesses">
-            Wrong guesses: <span id="wrong_guesses_list"><%= bad_guesses.join(', ') %></span>
+            <% array = [] %>
+            <% bad_guesses.each { |letter| array << "<span class='wrong_letter'>#{letter}</span>" } %>
+            Wrong guesses: <span id="wrong_guesses_list"><%= array.join(', ') %></span>
         </p>
         <nav class="buttons">
+            <a href="<%= url('/newgame') %>">New Game</a>
             <a href="<%= url('/save') %>">Save</a>
             <a href="<%= url('/load') %>">Load</a>
-            <a href="<%= url('/newgame') %>">New Game</a>
         </nav>
-    </body>
-</html>
