@@ -23,13 +23,18 @@
 			left</h3>
 			<div id="interactive">
 				<% if status == 'win' || status == 'lose' %>
-					<h3>Answer</h3>
 					<div id="answer">
-					<% get_answer.each do |color| %>
-						<div class="circle <%= color %>"></div>
-					<% end %>
-					<a href="/newgame">New Game</a>
+						<% get_answer.each do |color| %>
+							<div class="circle <%= color %>"></div>
+						<% end %>
+						<form id="new_game" action="/newgame">
+							<input type="submit" value="New Game">
+						</form>
+					</div>
 				<% else %>
+					<form id="new_game" action="/newgame">
+						<input type="submit" value="New Game">
+					</form>
 					<form id="guess" action="/" method="POST">
 						<% difficulty.times do |i| %>
 							<select name="color[<%= i + 1 %>]" required>
@@ -45,7 +50,7 @@
 			</div>
 			<h3>Guesses</h3>
 			<div id="guesses">
-				<% guesses.each do |guess| %>
+				<% guesses.reverse.each do |guess| %>
 					<% p guess %>
 					<div class="guess">
 						<div class="guess-code">

@@ -3,18 +3,21 @@ body{
 	font-family: sans-serif; }
 
 h1{
-	margin-top: 1em;
+	margin: 1em 0 0 0;
+	padding: 0;
 	font-size: 4em;
 	text-transform: uppercase;
 	color: #607D8B; }
 
 #game{}
 
-h2{}
+h2{
+	margin: 1em; }
 
 h3{}
 
-#interactive{}
+#interactive{
+	display: inline-block; }
 
 #answer{}
 
@@ -25,18 +28,28 @@ h3{}
 
 #answer .circle{
 	width: 4em;
- 	height: 2em;
-	margin: 1em; }
-
-a{}
+ 	height: 4em;
+	margin: .5em .5em; }
 
 #codebreaking{}
+
+#new_game{
+	margin: auto .50em; }
+
+#interactive form{
+	display: inline-block;
+}
+
+#answer form{
+	display: block;
+ 	margin-top: 1em; }
 
 #guesses{}
 
 .guess{}
 
-.guess-code{}
+.guess-code{
+	margin-top: 1em; }
 
 .guess-code .circle{
 	width: 2em;
@@ -119,4 +132,3 @@ a{}
 
 .key.wrong{
 	background-color: #B0BEC5; }
-

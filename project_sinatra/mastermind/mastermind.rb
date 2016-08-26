@@ -26,6 +26,10 @@ get '/newgame' do
   redirect to('/')
 end
 
+def get_answer
+  session[:game].get_answer
+end
+
 #should have letter in circle in-case colorblindness
 
 class Mastermind
@@ -50,7 +54,7 @@ class Mastermind
   end
   
   def get_answer
-    if win? || lose?
+    if @status == 'win' || @status == 'lose'
       answer = @answer
     else
       answer = nil
@@ -76,7 +80,7 @@ class Mastermind
   
   def get_keys(code)
     keys = []
-    compare = @answer
+    compare = @answer[0..-1]
     code.each_with_index do |color, i|
       if compare[i] == color
         keys << 'right'
