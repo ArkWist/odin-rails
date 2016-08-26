@@ -1,0 +1,96 @@
+dropdown windows because no javascript?
+
+
+
+.circles {
+	font-size: 0;
+	width: 600px;
+	text-align: center;
+	display: inline-block;
+}
+
+.circle {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	margin-left: 25px;
+	margin-right: 25px;
+	display: inline-block;
+	border-radius: 50%
+}
+
+
+
+https://mastermindforvikings.herokuapp.com/#
+
+
+title to left
+
+question thing in top corner << help_mask + help_window
+
+try to crack the code / you cracked the code in # turns
+
+show current working guess
+
+submit / try again
+
+show guesses below with keys
+
+
+.help_mask, .help_window {
+	position: absolute;
+	display: none;
+}
+
+
+<nav>
+	<p class="logo">MASTERMIND</p>
+	<div class="help"><a href="#">?</a></div>
+</nav>
+
+.help_mask {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 25;
+}
+
+.help_window {
+	width: 60vw;
+	padding: 50px;
+	background-color: white;
+	height: 60vh;
+	z-index: 26;
+	left: 50%;
+	margin-left: -30vw;
+	top: 50%;
+	margin-top: -30vh;
+}
+
+
+
+.help {
+	margin-top: 25px;
+	float: right;
+	margin-right: 50px;
+	border: 2px solid #B4B4B4;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	text-align: center;
+	padding-bottom: 2px;
+	color: #B4B4B4;
+}
+
+nav .help:hover {
+	background-color: #B4B4B4;
+}
+
+nav a {
+	padding: 0 30px 0 30px;
+	margin-left: -20px;
+}
+
+nav .help a:hover {
+	color: white;
+}

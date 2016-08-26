@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mastermind</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>Mastermind</h1>
+		<div id="game">
+			<% if status == 'win' %>
+				<h2>You are victorious!</h2>
+			<% elsif status == 'lose' %>
+				<h2>You have been defeated!</h2>
+			<% else %>
+				<h2>Break the code!</h2>
+			<% end %>
+			<h3><%= tries %>
+			<% if tries != 1 %>
+				tries
+			<% else %>
+				try
+			<% end %>
+			left</h3>
+			<div id="interactive">
+				<% if status == 'win' || status == 'lose' %>
+					<h3>Answer</h3>
+					<div id="answer">
+					<% get_answer.each do |color| %>
+						<div class="circle <%= color %>"></div>
+					<% end %>
+					<a href="/newgame">New Game</a>
+				<% else %>
+					<form id="guess" action="/" method="POST">
+						<% difficulty.times do |i| %>
+							<select name="color[<%= i + 1 %>]" required>
+								<option disabled selected value>-- pick --</option>
+								<% colors.each do |color| %>
+									<option value="<%= color %>"><%= color %></option>
+								<% end %>
+							</select>
+						<% end %>
+						<input type="submit" value="Guess"/>
+					</form>
+				<% end %>
+			</div>
+			<h3>Guesses</h3>
+			<div id="guesses">
+				<% guesses.each do |guess| %>
+					<% p guess %>
+					<div class="guess">
+						<div class="guess-code">
+							<% guess.code.each do |color| %>
+								<div class="circle <%= color %>"></div>
+							<% end %>
+						</div>
+						<div class="guess-keys">
+							<% guess.keys.each do |key| %>
+								<div class="circle key <%= key %>"></div>
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</body>
+</html>

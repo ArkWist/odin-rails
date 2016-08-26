@@ -1,0 +1,122 @@
+body{
+	text-align: center;
+	font-family: sans-serif; }
+
+h1{
+	margin-top: 1em;
+	font-size: 4em;
+	text-transform: uppercase;
+	color: #607D8B; }
+
+#game{}
+
+h2{}
+
+h3{}
+
+#interactive{}
+
+#answer{}
+
+.circle{
+	position: relative;
+	display: inline-block;
+	border-radius: 50%; }
+
+#answer .circle{
+	width: 4em;
+ 	height: 2em;
+	margin: 1em; }
+
+a{}
+
+#codebreaking{}
+
+#guesses{}
+
+.guess{}
+
+.guess-code{}
+
+.guess-code .circle{
+	width: 2em;
+	height: 2em;
+	margin: .25em; }
+
+.guess-keys{}
+
+.guess-keys .circle{
+	width: .9em;
+	height: .9em;
+	margin: .2em; }
+
+.circle.red{
+	background-color: #F44336; }
+
+.circle.indigo{
+	background-color: #3F51B5; }
+
+.circle.teal{
+	background-color: #009688; }
+
+.circle.yellow{
+	background-color: #FFEB3B; }
+
+.circle.purple{
+	background-color: #9C27B0; }
+
+.circle.light-blue{
+	background-color: #03A9F4; }
+
+.circle.light-green{
+	background-color: #8BC34A; }
+
+.circle.orange{
+	background-color: #FF9800; }
+
+.circle.pink{
+	background-color: #E91E63; }
+
+.circle.blue{
+	background-color: #2196F3; }
+
+.circle.green{
+	background-color: #4CAF50; }
+
+.circle.amber{
+	background-color: #FFC107; }
+
+.circle.deep-purple{
+	background-color: #673AB7; }
+
+.circle.cyan{
+	background-color: #00BCD4; }
+
+.circle.lime{
+	background-color: #CDDC39; }
+
+.circle.deep-orange{
+	background-color: #FF5722; }
+
+.circle.brown{
+	background-color: #795548; }
+
+.circle.grey{
+	background-color: #9E9E9E; }
+
+.circle.blue-grey{
+	background-color: #607D8B; }
+
+.circle.black{
+	background-color: #000000; }
+
+.key.right{
+	background-color: #000000; }
+
+.key.close{
+	background-color: #FFFFFF;
+	box-shadow: 0 0 0 .2em #000000 inset; }
+
+.key.wrong{
+	background-color: #B0BEC5; }
+
