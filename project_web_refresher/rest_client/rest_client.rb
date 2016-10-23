@@ -5,4 +5,4 @@ term = gets.chomp.split.join('+')
 
 results = RestClient.get('https://www.google.com/', params: {q: term})
 
-puts "Response body: #{results}"
+puts "Response body:\n#{results}"
