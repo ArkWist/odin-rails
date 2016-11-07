@@ -9,3 +9,13 @@ Completed projects from [The Odin Project](http://www.theodinproject.com/)'s *[R
 - [Caesar Cipher Reloaded](https://github.com/ArkWist/odin-rails/tree/master/project_sinatra/caesar_cipher_reloaded) ([online](https://odin-caesar-cipher.herokuapp.com/))
 - [Hangman](https://github.com/ArkWist/odin-rails/tree/master/project_sinatra/hangman) ([online](https://odin-hangman.herokuapp.com/))
 - [Mastermind](https://github.com/ArkWist/odin-rails/tree/master/project_sinatra/mastermind) ([online](https://odin-mastermind.herokuapp.com/))
+
+#### Getting Your Feet Wet
+- [Hello App](https://github.com/ArkWist/odin-rails/tree/master/project_feet_wet/hello_app)
+- [Toy App](https://github.com/ArkWist/odin-rails/tree/master/project_feet_wet/toy_app)
+
+#### Web Refresher
+- [Rest Client](https://github.com/ArkWist/odin-rails/tree/master/project_web_refresher/rest_client)
+
+#### Basic Routes, Views and Controllers
+- [Rest Tester](https://github.com/ArkWist/odin-rails/tree/master/project_basic_rvc/rest_tester)
