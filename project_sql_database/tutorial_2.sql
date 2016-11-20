@@ -61,7 +61,35 @@ SELECT name,
   FROM world
  WHERE name LIKE 'N%';
  
- 
+--Show the name and the continent - but substitute Eurasia for Europe and Asia; substitute America - for each country in North America or South America or Caribbean. Show countries beginning with A or B
+SELECT name,
+       CASE WHEN continent IN ('Europe', 'Asia')
+            THEN 'Eurasia'
+            WHEN continent IN ('North America', 'South America', 'Caribbean')
+            THEN 'America'
+            ELSE continent END
+  FROM world
+ WHERE name LIKE 'A%' or name LIKE 'B%';
+
+
+
+
+
+--Put the continents right...
+--Show the name, the original continent and the new continent of all countries.
+SELECT name, continent,
+       CASE WHEN continent = 'Oceania'
+            THEN 'Australasia'
+            WHEN continent = 'Eurasia' OR name = 'Turkey'
+            THEN 'Europe/Asia'
+            WHEN continent = 'Caribbean' AND name LIKE 'B%'
+            THEN 'North America'
+            WHEN continent = 'Caribbean' AND name NOT LIKE 'B%'
+            THEN 'South America'
+            ELSE continent END
+  FROM world
+ WHERE tld IN ('.ag','.ba','.bb','.ca','.cn','.nz','.ru','.tr','.uk')
+ORDER BY name ASC;
 
 
 
