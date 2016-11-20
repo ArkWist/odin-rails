@@ -1,4 +1,4 @@
--- SELECT from world
+-- SELECT from World
 
 -- 1. Observe the result of running a simple SQL command. 
 SELECT name, continent, population
