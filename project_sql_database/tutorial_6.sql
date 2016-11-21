@@ -31,12 +31,38 @@ SELECT goal.player, goal.teamid, eteam.coach, goal.gtime
 -- 6. List the the dates of the matches and the name of the team in which Fernando Santos was the team1 coach.
 SELECT game.mdate, eteam.teamname
   FROM game
-  JOIN eteam ON (game.team1 = eteam.id)
+  JOIN eteam ON game.team1 = eteam.id
  WHERE eteam.coach = 'Fernando Santos';
 
--- 7.
+-- 7. List the player for every goal scored in a game where the stadium was National Stadium, Warsaw.
+SELECT goal.player
+  FROM goal
+  JOIN game ON goal.matchid = game.id
+ WHERE game.stadium = 'National Stadium, Warsaw';
+
+-- 8. Show the name of all players who scored a goal against Germany in the Germany-Greece quarterfinal.
+SELECT DISTINCT goal.player
+  FROM game
+  JOIN goal ON goal.matchid = game.id 
+ WHERE goal.teamid <> 'GER'
+   AND (game.team1 = 'GER' OR game.team2 = 'GER');
+
+-- 9. Show teamname and the total number of goals scored.
+SELECT eteam.teamname, COUNT(*)
+  FROM eteam
+  JOIN goal ON eteam.id = goal.teamid
+ GROUP BY eteam.teamname;
+
+-- 10. Show the stadium and the number of goals scored in each stadium. 
 
 
+-- 11. 
+
+
+-- 12. 
+
+
+-- 13. 
 
 
 
