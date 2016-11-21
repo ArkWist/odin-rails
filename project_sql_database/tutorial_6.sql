@@ -54,25 +54,34 @@ SELECT eteam.teamname, COUNT(*)
  GROUP BY eteam.teamname;
 
 -- 10. Show the stadium and the number of goals scored in each stadium. 
+SELECT game.stadium, COUNT(*)
+  FROM game
+  JOIN goal ON game.id = goal.matchid
+ GROUP BY game.stadium;
 
+-- 11. For every match involving Poland, show the matchid, date and the number of goals scored.
+SELECT goal.matchid, game.mdate, COUNT(*)
+  FROM game
+  JOIN goal ON goal.matchid = game.id 
+ WHERE (game.team1 = 'POL' OR game.team2 = 'POL')
+ GROUP BY goal.matchid, game.mdate;
 
--- 11. 
+-- 12. For every match where Germany scored, show matchid, match date and the number of goals scored by Germany.
+SELECT goal.matchid, game.mdate, COUNT(goal.teamid)
+  FROM game
+  JOIN goal ON goal.matchid = game.id
+ WHERE goal.teamid = 'GER'
+ GROUP BY goal.matchid, game.mdate;
 
-
--- 12. 
-
-
--- 13. 
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- 13. List every match with the goals scored by each team.
+-- NOTE: sqlzoo throws an error
+SELECT game.mdate, game.team1,
+   SUM (CASE WHEN goal.teamid = game.team1
+             THEN 1 ELSE 0 END) AS score1,
+       game.team2,
+   SUM (CASE WHEN goal.teamid = game.team2
+             THEN 1 ELSE 0 END) AS score2
+  FROM game
+  LEFT JOIN goal ON goal.matchid = game.id
+ GROUP BY game.id
+ ORDER BY game.mdate, goal.matchid, game.team1, game.team2;
