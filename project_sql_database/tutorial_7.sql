@@ -97,6 +97,16 @@ SELECT movie.title, actor.name
                      FROM casting y
                      JOIN actor ON actor.id = actorid
                     WHERE name = 'Julie Andrews');
+-- OR put in 'casting' names, then it works...
+SELECT movie.title, actor.name
+  FROM movie
+  JOIN casting x ON movie.id = x.movieid
+  JOIN actor     ON actor.id = x.actorid
+ WHERE ord = 1
+   AND x.movieid IN (SELECT y.movieid
+                     FROM casting y
+                     JOIN actor ON actor.id = y.actorid
+                    WHERE name = 'Julie Andrews');
 
 -- 14. 
 
