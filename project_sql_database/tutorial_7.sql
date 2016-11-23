@@ -87,38 +87,40 @@ HAVING COUNT(movie.title) = (SELECT MAX(c)
                                       GROUP BY yr) AS t)
 
 -- 13. List the film title and the leading actor for all of the films 'Julie Andrews' played in.
--- WHY does it not work unless I don't specify the 'casting' table in clauses?
 SELECT movie.title, actor.name
   FROM movie
-  JOIN casting x ON movie.id = movieid
-  JOIN actor     ON actor.id = actorid
- WHERE ord = 1
-   AND movieid IN (SELECT movieid
-                     FROM casting y
-                     JOIN actor ON actor.id = actorid
-                    WHERE name = 'Julie Andrews');
--- OR put in 'casting' names, then it works...
-SELECT movie.title, actor.name
+  JOIN casting t1 ON movie.id = t1.movieid
+  JOIN actor      ON actor.id = t1.actorid
+ WHERE t1.ord = 1
+   AND t1.movieid IN (SELECT t2.movieid
+                        FROM casting t2
+                        JOIN actor ON actor.id = t2.actorid
+                       WHERE name = 'Julie Andrews');
+
+-- 14. Obtain a list, in alphabetical order, of actors who've had at least 30 starring roles.
+SELECT actor.name
+  FROM actor
+  JOIN casting ON actor.id = casting.actorid
+ WHERE casting.ord = 1
+ GROUP BY actor.name
+HAVING COUNT(actor.name) >= 30
+ ORDER BY actor.name;
+
+-- 15. List the films released in the year 1978 ordered by the number of actors in the cast, then by title.
+SELECT movie.title, COUNT(casting.actorid) AS actors
   FROM movie
-  JOIN casting x ON movie.id = x.movieid
-  JOIN actor     ON actor.id = x.actorid
- WHERE ord = 1
-   AND x.movieid IN (SELECT y.movieid
-                     FROM casting y
-                     JOIN actor ON actor.id = y.actorid
-                    WHERE name = 'Julie Andrews');
+  JOIN casting ON movie.id = casting.movieid
+ WHERE movie.yr = 1978
+ GROUP BY title
+ ORDER BY COUNT(casting.actorid) DESC, title;
 
--- 14. 
-
-
--- 15. 
-
-
--- 16. 
-
-
-
-
-
-
+-- 16. List all the people who have worked with Art Garfunkel.
+SELECT actor.name
+  FROM actor
+  JOIN casting ON actor.id = casting.actorid
+ WHERE casting.movieid IN (SELECT casting.movieid
+                             FROM casting
+                             JOIN actor ON actor.id = casting.actorid
+                            WHERE actor.name = 'Art Garfunkel')
+   AND name <> 'Art Garfunkel';
 
