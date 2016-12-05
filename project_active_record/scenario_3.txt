@@ -1,0 +1,40 @@
+# Scenario 3
+
+## Description
+
+You want to build a virtual pinboard, so you'll have users on your platform who can create "pins". Each pin will contain the URL to an image on the web. Users can comment on pins (but can't comment on comments).
+
+## Solution
+
+>> **User**
+>> 
+>> id:         integer
+>> created_at: datetime
+>> updated_at: datetime
+>> 
+>> has_many :pins
+>> has_many :comments
+
+>> **Pin**
+>> 
+>> id:         integer
+>> created_at: datetime
+>> updated_at: datetime
+>> 
+>> image:      string [present]
+>>
+>> has_many   :comments
+>> belongs_to :user
+
+
+>> **Comment**
+>> 
+>> id:         integer
+>> created_at: datetime
+>> updated_at: datetime
+>> 
+>> author:     string [present]
+>> body:       text [present]
+>> 
+>> belongs_to :pin
+>> belongs_to :user
