@@ -1,0 +1,41 @@
+# Scenario 4
+
+## Description
+
+You want to build a message board like Hacker News. Users can post links. Other users can comment on these submissions or comment on the comments. How would you make sure a comment knows where in the heirarchy it lives?
+
+## Solution
+
+>> **User**
+>> 
+>> id:         integer
+>> created_at: datetime
+>> updated_at: datetime
+>> 
+>> has_many :links
+>> has_many :comments
+
+>> **Link**
+>> 
+>> id:         integer
+>> created_at: datetime
+>> updated_at: datetime
+>> 
+>> link:       string [present]
+>> comment:	   << can I do this...?
+>>
+>> has_many   :comments
+>> belongs_to :user
+
+>> **Comment**
+>> 
+>> id:         integer
+>> created_at: datetime
+>> updated_at: datetime
+>> 
+>> author:     string [present]
+>> body:       text [present]
+>> 
+>> belongs_to :link
+>> belongs_to :user
+>> belongs_to :comment
