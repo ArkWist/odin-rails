@@ -1,4 +1,4 @@
-# Scenario 1
+# Scenario 2
 
 ## Description
 
@@ -6,4 +6,25 @@ You are building the profile tab for a new user on your site. You are already st
 
 ## Solution
 
--- Notes:
+>> **User**
+>> 
+>> id:         integer
+>> created_at: datetime
+>> updated_at: datetime
+>> username:   string [unique, 4-15 chars, present]
+>> email:      string [unique, present]
+>> 
+>> has_one :profile
+
+>> **Profile**
+>> 
+>> id: integer
+>> created_at: datetime
+>> updated_at: datetme
+>> city:       string
+>> state:      string
+>> country:    string
+>> age:        integer
+>> gender:     string
+>> 
+>> belongs_to :user
