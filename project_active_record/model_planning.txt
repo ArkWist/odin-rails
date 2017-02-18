@@ -1,0 +1,26 @@
+# micro-reddit
+
+>> **User**
+>> 
+>> id:              integer
+>> name:            string [unique, present]
+>> email:           string [unique, present]
+>> password_digest: string
+>> 
+>> has_many :posts, :comments
+
+>> **Post**
+>> 
+>> id:         integer
+>> title:      string [present]
+>> link:       string [present]
+>>
+>> belongs_to :user
+>> has_many :comments
+
+>> **Comment**
+>>
+>> id: integer
+>> body:      text [present]
+>>
+>> belongs_to :user, :post
