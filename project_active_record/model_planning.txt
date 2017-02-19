@@ -20,7 +20,7 @@
 
 >> **Comment**
 >>
->> id: integer
+>> id:        integer
 >> body:      text [present]
 >>
 >> belongs_to :user, :post
