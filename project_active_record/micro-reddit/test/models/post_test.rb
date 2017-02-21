@@ -17,7 +17,7 @@ class PostTest < ActiveSupport::TestCase
   end
   
   test "title should not be too long" do
-    @post.name = "a" * 256
+    @post.title = "a" * 256
     assert_not @post.valid?
   end
   
@@ -30,7 +30,7 @@ class PostTest < ActiveSupport::TestCase
     valid_links = %w[www.google.com https://www.google.com google.co.jp drive.google.com google.com/hi/what_is/this%20doing/here.jpg]
     valid_links.each do |valid_link|
       @post.link = valid_link
-      assert @postvalid?, "#{valid_link.inspect} should be valid"
+      assert @post.valid?, "#{valid_link.inspect} should be valid"
     end
   end
   
