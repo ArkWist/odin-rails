@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  #belongs_to :user #### causes problems
+  belongs_to :user, optional: true
   #has_many   :comment
 
   validates :title,   presence: true#, length: { maximum: 255 }
