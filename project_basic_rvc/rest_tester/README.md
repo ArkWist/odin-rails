@@ -1,24 +1,5 @@
-# README
+# Rest Tester
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Basic application for interacting with the Rest Client gem.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Written for [The Odin Project](http://www.theodinproject.com/). See **[Projects: Basic Routes, Views and Controllers](https://github.com/daglilley/odin-rails/tree/master/project_basic_rvc/rest_tester)** for details.
