@@ -10,4 +10,19 @@ class CommentTest < ActiveSupport::TestCase
     assert @comment.valid?
   end
 
+  test "body should be present" do
+    @comment.body = " "
+    assert_not @comment.valid?
+  end
+  
+  test "user id should be present" do
+    @comment.user_id = nil
+    assert_not @comment.valid?
+  end
+
+  test "post id should be present" do
+    @comment.post_id = nil
+    assert_not @post.valid?
+  end
+
 end
