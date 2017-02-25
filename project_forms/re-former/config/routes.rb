@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  get 'users/new'
+  #get 'users/new'
 
-  get 'users/create'
+  #get 'users/create'
 
   resources :users, only: [:new, :create]
   
