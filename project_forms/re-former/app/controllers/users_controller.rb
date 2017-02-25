@@ -12,7 +12,19 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
+
+  def edit
+    @user = User.find_by(params[:username, :email])
+  end
+
+  def update
+    @user = User.find_by(params[:username, :email])
+    if @user.update_attributes(user_params)
+      redirect_to new_user_path
+    else
+      render :edit
+  end
+
   private def user_params
     params.require(:user).permit(:username, :email, :password)
   end

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   #get 'users/create'
 
-  resources :users, only: [:new, :create]
+  #get 'users/edit'
+
+  resources :users, only: [:new, :create, :edit]
   
 end
