@@ -14,15 +14,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(params[:username, :email])
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find_by(params[:username, :email])
+    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       redirect_to new_user_path
     else
       render :edit
+    end
   end
 
   private def user_params

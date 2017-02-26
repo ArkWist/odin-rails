@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'users#new'
   
-  #get 'users/new'
-
-  #get 'users/create'
-
-  #get 'users/edit'
-
-  resources :users, only: [:new, :create, :edit]
+  resources :users, only: [:new, :create, :edit, :update]
   
 end
