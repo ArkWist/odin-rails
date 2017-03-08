@@ -24,3 +24,6 @@ Completed projects from [The Odin Project](http://www.theodinproject.com/)'s *[R
 - [SQL Practice](https://github.com/daglilley/odin-rails/tree/master/project_sql_database)
 - [Data Model Scenarios](https://github.com/daglilley/odin-rails/tree/master/project_active_record/scenarios)
 - [Micro Reddit](https://github.com/daglilley/odin-rails/tree/master/project_active_record/micro-reddit)
+
+#### Forms and Authentication
+- [Re-Former](https://github.com/daglilley/odin-rails/tree/master/project_forms/re-former)
