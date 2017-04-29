@@ -1,0 +1,25 @@
+Users
+
+id
+name
+email
+
+password
+password_confirmation
+
+
+later::
+member_status
+
+has many: Posts
+
+----------
+
+Post
+
+title
+body
+author
+date
+
+belongs to: User
