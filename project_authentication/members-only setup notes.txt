@@ -25,3 +25,14 @@ date
 belongs to: User
 
 ----------
+
+rails new members-only
+rails generate scaffold User name:string email:string password_digest:string
+rails db:migrate
+Add bcrypt to Gemfile
+bundle install
+Add has_secure_password to User.rb
+rails generate controller Sessions new
+Add login routes to routes.rb
+Build #new form template
+rails generate migration add_remember_token_to_users remember_token:string
