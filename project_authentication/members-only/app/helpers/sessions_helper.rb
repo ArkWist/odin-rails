@@ -23,5 +23,8 @@ module SessionsHelper
     @current_user = nil
   end
   
+  def logged_in?
+    !cookies[:remember_token].nil?
+  end
   
 end

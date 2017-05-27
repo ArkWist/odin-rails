@@ -46,5 +46,9 @@ Make #current_user and #current_user= methods
 Make #log_out
 Add log_out to routes
 Make application layout show Log out when logged in
+$ rails generate model Post title:string body:text
+$ rails generate controller Post new create
+$ rails db:migrate
 
-Create a couple of users...
+
+Create a Post model and a Posts controller and a corresponding resource in your Routes file which allows the [:new, :create, :index] methods.
