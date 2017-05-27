@@ -26,13 +26,25 @@ belongs to: User
 
 ----------
 
-rails new members-only
-rails generate scaffold User name:string email:string password_digest:string
-rails db:migrate
+$ rails new members-only
+$ rails generate scaffold User name:string email:string password_digest:string
+$ rails db:migrate
 Add bcrypt to Gemfile
-bundle install
+$ bundle install
 Add has_secure_password to User.rb
-rails generate controller Sessions new
+$ rails generate controller Sessions new
 Add login routes to routes.rb
 Build #new form template
-rails generate migration add_remember_token_to_users remember_token:string
+$ rails generate migration add_remember_token_to_users remember_token:string
+$ rails db:migrate
+Add #create_remember_token for before_create for User
+Create users in console
+Add #create to SessionsController
+Include SessionsHelper in ApplicationController
+Add #log_in in SessionsHelper
+Make #current_user and #current_user= methods
+Make #log_out
+Add log_out to routes
+Make application layout show Log out when logged in
+
+Create a couple of users...
