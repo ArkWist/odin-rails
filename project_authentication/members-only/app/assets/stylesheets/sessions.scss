@@ -1,3 +1,30 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post{
+  margin: 1em auto;
+}
+
+.post-title{
+  margin-bottom: 0;
+}
+
+.poster-label{
+  font-size: 75%;
+  margin-bottom: 0;
+}
+
+.poster-name{
+  font-weight: bold;
+}
+
+.post-body{
+  margin-top: 1em;
+}
+  
+#login-form input[type='email'], #login-form input[type='password']{
+  border: 1px solid #bbb;
+  width: 20%;
+  margin-bottom: 15px; 
+}

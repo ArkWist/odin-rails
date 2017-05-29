@@ -1,12 +1,13 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/post/index.html.erb</p>
+<h1>All Posts</h1>
 
 <% @posts.each do |post| %>
-  <% if logged_in? %>
-    <p>
-      Posted by: <%= post.user.name %>
-    </p>
-  <% end %>
-  <p><%= post.title %></p>
-  <p><%= post.body %></p>
+  <article class="post">
+    <h2 class="post-title"><%= post.title %></h2>
+    <% if logged_in? %>
+      <span class="poster-label">
+        Posted by: <span class="poster-name"><%= post.user.name %></span>
+      </span>
+    <% end %>
+    <p class="post-body"><%= post.body %></p>
+  </article>
 <% end %>

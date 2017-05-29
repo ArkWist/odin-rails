@@ -56,7 +56,3 @@ $ rails generate migration AddForeignKeyToPost user:references
 rails db:migrate
 Add user and post associations to models
 Make show posts in post/index.html.erb
-
-
-
-Create a Post model and a Posts controller and a corresponding resource in your Routes file which allows the [:new, :create, :index] methods.
