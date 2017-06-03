@@ -1,0 +1,27 @@
+# Scenario 3
+
+Data architecture for a posting things and following each other.
+
+>> **User**
+>> 
+>> id:      integer
+>> name:    string
+>> contact: string
+>> 
+>> has_many :posts
+>> has_many :users, through: :follows
+
+>> **Post**
+>> 
+>> id:         integer
+>> title:      string
+>> body:       text
+>> 
+>> belongs_to :user
+
+>> **Follow**
+>> 
+>> id:           integer
+>> following_id: integer
+>> 
+>> belongs_to :user

@@ -9,6 +9,7 @@ Data architecture for a dinner party invitation site. A user can create parties,
 >> contact: string
 >> 
 >> has_many :parties
+>> has_many :invitations
 
 >> **Party**
 >> 
@@ -18,46 +19,12 @@ Data architecture for a dinner party invitation site. A user can create parties,
 >> end_time:   datetime
 >> 
 >> belongs_to :user
+>> has_many   :invitations
 
-
-
-
-
-Party
-
-Invite?
-
-
-
->> **Petsitter**
+>> **Invitation**
 >> 
->> id:      integer
->> name:    string  [present]
->> contact: text    [unique, present]
+>> id:       integer
+>> accepted: boolean
 >> 
->> has_many :pets
->> has_many :reservations
-
->> **Pets**
->> 
->> id:      integer
->> name:    string  [present]
->> contact: text    [unique, present]
->> 
->> has_many :petsitters
->> has_many :reservations
-
->> **Owner**
->> 
->> id:      integer
->> name:    string
->> contact: string
->> address: text
->> 
->> has_many :pets
-
->> **Reservation**
->>
->> id:           integer
->> start_date:   datetime
->> end_date:     datetime
+>> belongs_to :user
+>> belongs_to :party
