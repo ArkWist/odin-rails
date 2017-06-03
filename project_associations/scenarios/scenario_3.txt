@@ -22,6 +22,6 @@ Data architecture for a posting things and following each other.
 >> **Follow**
 >> 
 >> id:           integer
->> following_id: integer
+>> following_id: references
 >> 
 >> belongs_to :user
