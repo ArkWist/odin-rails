@@ -7,6 +7,7 @@ Events have a date and location
 >> 
 >> id:      integer
 >> name:    string
+>> email:   string
 >> 
 >> has_many :events
 >> has_many :invites
@@ -27,3 +28,65 @@ Events have a date and location
 >> 
 >> belongs_to :user
 >> belongs_to :event
+
+----------
+
+$ rails new private-events
+$ rails generate scaffold User name:string email:string password_digest:string
+$ rails db:migrate
+  Add bcrypt to Gemfile
+$ bundle install
+  Add has_secure_password to User.rb
+$ rails generate controller Sessions new
+  Add login routes to routes-tb
+  Build #new form template
+$ rails generate migration add_remember_token_to_users remember_token:string
+$ rails db:migrate
+  Add #create_remember_token to before_create for User
+  Create users in console
+  Add #create to SessionsController
+  Include SessionsHelper in ApplicationController
+  Add #log_in in SessionsHelper
+  Add #current_user and #current_user=
+  Add #log_out
+  Add log_out to routes
+  Make application layout show 'Log out' when logged in
+$ rails generate model Event address:string date:datetime
+$ rails generate controller Events new create
+$ rails generate model Invite accepted:boolean
+$ rails generate controller Invites new create
+$ rails db:migrate
+$ rails generate migration AddForeignKeysToEvent user:references
+$ rails generate migration AddForeignKeysToInvite user:references  \
+                                                  event:references
+$ rails db:migrate
+  Add user/event/invite associations to models
+  Restrict #new and #create in Event to logged_in users
+  Make form for new event
+  Add #create to EventsController
+  Make show events in event/index.html.erb
+  Restrict #new and #create in Invite to Event owner users
+  Make form for new invitation
+  Add #create to InvitesController
+  Make show invitations in invite/index.html.erb
+  Make form for accept invitation
+  Add ##accept## to InvitesController
+  Make show accepted invitations in ####.html.erb
+
+----------
+
+Sign-up page
+  Name, Email, Password, PasswordConfirmation
+  -- Show user upon creating?
+  --   Events made
+  --   Events attending
+Create new event page
+  Title, Description, Location, Date[calendar], StartTime[dropdown?]
+  -- Show event upon creating?
+  --    Information
+  --    User Attending
+  --    Edit/Delete // Attend
+
+Profile has My Events
+Join events by clicking this hitting Attend
+Or only event creator can add people, from a list of users?
