@@ -1,0 +1,29 @@
+# Private Events
+
+Users create events and send invitations/parties to other users
+Events have a date and location 
+
+>> **User**
+>> 
+>> id:      integer
+>> name:    string
+>> 
+>> has_many :events
+>> has_many :invites
+
+>> **Event**
+>> 
+>> id:         integer
+>> address:    string
+>> date:       datetime
+>> 
+>> belongs_to :user
+>> has_many   :invites
+
+>> **Invite**
+>> 
+>> id:       integer
+>> accepted: boolean
+>> 
+>> belongs_to :user
+>> belongs_to :event
