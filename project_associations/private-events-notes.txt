@@ -31,9 +31,57 @@ Events have a date and location
 
 ----------
 
+SETUP AND SIGN-IN
+
 $ rails new private-events
-$ rails generate scaffold User name:string email:string password_digest:string
+$ rails generate model User name:string
 $ rails db:migrate
+$ rails generate controller Users new create show
+$ rails db:migrate
+  Create sign-in function
+  >> save name into session or cookies hash
+  Create #show page
+
+BASIC EVENTS
+
+$ rails generate model Event title:string location:string description:text \
+                             date:datetime
+$ rails db:migrate
+$ rails generate migration add_fkeys_to_event creator:references
+$ rails db:migrate
+  Add user's events to User's #show page
+$ rails generate controller Events new create show index
+
+
+
+User has many events
+Event belongs to many users
+
+Add the association between the event creator (a User) and the event. Call this user the "creator". Add the foreign key to the Events model as necessary.
+
+
+belongs_to :user, foreign_key: "creator"
+has_many :events
+belongs_to :creator, class_name: "User"
+
+The :source option specifies the source association name for a has_one :through association.
+
+
+class User
+  has_many   :events
+  has_many   :invites, through: :events
+class Event
+  belongs_to :user
+  has_many   :users,   through: :invites
+class Invite
+  belongs_to :event
+  belongs_to :user
+
+
+$ rails generate migration add_fkeys_to_event user:references
+
+:foreign_key, :class_name, :source
+
   Add bcrypt to Gemfile
 $ bundle install
   Add has_secure_password to User.rb
