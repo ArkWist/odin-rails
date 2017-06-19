@@ -31,16 +31,32 @@ Events have a date and location
 
 ----------
 
-SETUP AND SIGN-IN
+SETUP
 
 $ rails new private-events
 $ rails generate model User name:string
 $ rails db:migrate
 $ rails generate controller Users new create show
 $ rails db:migrate
-  Create sign-in function
-  >> save name into session or cookies hash
+
+PROTO SIGN-IN
+
+  Add presence/uniqueness validation to user.rb
+$ rails generate controller Sessions new
+  Add login/logout sessions#new/create/destroy routes
+  Change #"should get new" sessions_c... test to login_path
+  Add signin form to sessions#new.h.erb
+  Add #create to sessions controller
+  Add #current_user and #logged_in? to sessions helper
+  Add _header with log_in/name link
+
+  Create sign-in function (with session or cookie)
   Create #show page
+------
+Add user tests (ch6)
+Add login tests (ch8)
+Add cookies for login (ch9)
+
 
 BASIC EVENTS
 
