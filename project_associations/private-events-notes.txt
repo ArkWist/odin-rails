@@ -50,21 +50,19 @@ $ rails generate controller Sessions new
   Add #current_user and #logged_in? to sessions helper
   Add _header with log_in/name link
 
-  Create sign-in function (with session or cookie)
-  Create #show page
-------
-Add user tests (ch6)
-Add login tests (ch8)
-Add cookies for login (ch9)
-
-
 BASIC EVENTS
 
 $ rails generate model Event title:string location:string description:text \
                              date:datetime
 $ rails db:migrate
-$ rails generate migration add_fkeys_to_event creator:references
+$ rails generate migration add_creator_fkeys_to_event creator:references
+  Add associations to User and Event models
 $ rails db:migrate
+
+#### Why can't do user.events.build?
+     Why does it want user_id instead of using creator_id?
+
+
   Add user's events to User's #show page
 $ rails generate controller Events new create show index
 
