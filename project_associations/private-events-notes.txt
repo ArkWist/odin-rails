@@ -59,10 +59,14 @@ $ rails g migration AddCreatorToEvent creator:references
   Add associations to User and Event models
 $ rails db:migrate
   Add @user assignment in users_c#show
-  
   Add user's events to User's #show page
-$ rails generate controller Events new create show index
-
+  
+$ rails g controller Events new create show index
+  Add Event routes
+  Add submit form to events#new.h.erb
+  Make events#create use build
+  Add creator's name to events#show
+  Add all events to event#index
 
 
 User has many events
