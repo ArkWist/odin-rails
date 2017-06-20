@@ -2,3 +2,10 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 <h1>Page for <%= @user.name %></h1>
+
+<% if @user.events.any? %>
+  <h2>Events (<%= @user.events.count %>)</h2>
+  <% @user.events.each do |event| %>
+    <h3><%= event.title %></h3>
+  <% end %>
+<% end %>
