@@ -34,15 +34,15 @@ Events have a date and location
 SETUP
 
 $ rails new private-events
-$ rails generate model User name:string
+$ rails g model User name:string
 $ rails db:migrate
-$ rails generate controller Users new create show
+$ rails g controller Users new create show
 $ rails db:migrate
 
 PROTO SIGN-IN
 
   Add presence/uniqueness validation to user.rb
-$ rails generate controller Sessions new
+$ rails g controller Sessions new
   Add login/logout sessions#new/create/destroy routes
   Change #"should get new" sessions_c... test to login_path
   Add signin form to sessions#new.h.erb
@@ -52,10 +52,10 @@ $ rails generate controller Sessions new
 
 BASIC EVENTS
 
-$ rails generate model Event title:string location:string description:text \
+$ rails g model Event title:string location:string description:text \
                              date:datetime
 $ rails db:migrate
-$ rails generate migration add_creator_fkeys_to_event creator:references
+$ rails g migration AddCreatorToEvent creator:references
   Add associations to User and Event models
 $ rails db:migrate
 
