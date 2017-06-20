@@ -58,11 +58,7 @@ $ rails db:migrate
 $ rails g migration AddCreatorToEvent creator:references
   Add associations to User and Event models
 $ rails db:migrate
-
-#### Why can't do user.events.build?
-     Why does it want user_id instead of using creator_id?
-
-
+  Add @user assignment in users_c#show
   Add user's events to User's #show page
 $ rails generate controller Events new create show index
 
