@@ -64,8 +64,12 @@ $ rails db:migrate
 $ rails g controller Events new create show index
   Add Event routes
   Add submit form to events#new.h.erb
+  Add #logged_in_user to application_c
+  Add before_action :logged_in_user to events_c
   Make events#create use build
+  Add @event assignment in events_c#show
   Add creator's name to events#show
+  
   Add all events to event#index
 
 

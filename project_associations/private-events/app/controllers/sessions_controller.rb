@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = User.find_by(name: params[:session][:name])
-    if user
+    @user = User.find_by(name: params[:session][:name])
+    if @user
       # Log in
       session[:user_id] = user.id
-      redirect_to user
+      redirect_to @user
     else
       # Error
       render 'new'

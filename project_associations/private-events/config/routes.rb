@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
   
-  get 'events/new'
-  post '/events/new', to: 'events#create'
+  get  '/newevent', to: 'events#new'
+  post '/newevent', to: 'events#create'
   get 'events/show'
   get 'events/index'
 
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
 
-  resources :users
+  resources :users, :events
 
   #get  '/login', to: 'users#new'
   #post '/login', to: 'users#create'
