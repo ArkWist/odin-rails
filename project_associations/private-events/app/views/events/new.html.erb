@@ -3,7 +3,7 @@
 
 <h1>Create event</h1>
 
-<%= form_for(:event, url: newevent_path) do |f| %>
+<%= form_for :event do |f| %>
   
   <%= f.label :title %>
   <%= f.text_field :title %>
