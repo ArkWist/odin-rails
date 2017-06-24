@@ -5,16 +5,16 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(name: params[:session][:name])
     if @user
-      # Log in
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       redirect_to @user
     else
-      # Error
       render 'new'
     end
   end
   
   def destroy
+    log_out if logged_in?
+    redirect_to login_url
   end
   
 end

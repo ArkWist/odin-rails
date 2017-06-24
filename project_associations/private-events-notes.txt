@@ -1,36 +1,5 @@
 # Private Events
 
-Users create events and send invitations/parties to other users
-Events have a date and location 
-
->> **User**
->> 
->> id:      integer
->> name:    string
->> email:   string
->> 
->> has_many :events
->> has_many :invites
-
->> **Event**
->> 
->> id:         integer
->> address:    string
->> date:       datetime
->> 
->> belongs_to :user
->> has_many   :invites
-
->> **Invite**
->> 
->> id:       integer
->> accepted: boolean
->> 
->> belongs_to :user
->> belongs_to :event
-
-----------
-
 SETUP
 
 $ rails new private-events
@@ -58,7 +27,7 @@ $ rails g migration AddCreatorToEvent creator:references
   Add associations to User and Event models
 $ rails db:migrate
   Add @user assignment in users_c#show
-  Add user's events to User's #show page
+  Add events to User's #show page
   
 $ rails g controller Events new create show index
   Add Event routes
@@ -79,106 +48,25 @@ $ rails g migration AddAttendeeToEvent attendee:references
 $ rails g migration AddGuestToInvite event:references guest:references
   Add associations to User, Event, and Invite models
 $ rails db:migrate
+  Add attendees to Event's #show
+  Add attended_events to User's #show
+  Add previous/upcoming events distinction to User's #show
+  Add previous/upcoming distinction to Event's #index
+  Refactor previous/upcoming into scopes
+  Add navigation links
+  
+CLEAN-UP
 
--- Make means to invite people to 
----- user = User.first
-     event = user.events.first
-     event.invite(User.last)
-     event.attendee.all
-     user.attended_event.all
-     
--- make form, then make routes and controller
-
-
-
-$ rails g migration AddAttendeeToEvent attendee:references
-  Add associations to User and Event models
-$ rails db:migrate
-
-needs a through table for many-to-many relation
-
-
-User has many events
-Event belongs to many users
-
-Add the association between the event creator (a User) and the event. Call this user the "creator". Add the foreign key to the Events model as necessary.
-
-
-belongs_to :user, foreign_key: "creator"
-has_many :events
-belongs_to :creator, class_name: "User"
-
-The :source option specifies the source association name for a has_one :through association.
-
-
-class User
-  has_many   :events
-  has_many   :invites, through: :events
-class Event
-  belongs_to :user
-  has_many   :users,   through: :invites
-class Invite
-  belongs_to :event
-  belongs_to :user
-
-
-$ rails generate migration add_fkeys_to_event user:references
-
-:foreign_key, :class_name, :source
-
-  Add bcrypt to Gemfile
-$ bundle install
-  Add has_secure_password to User.rb
-$ rails generate controller Sessions new
-  Add login routes to routes-tb
-  Build #new form template
-$ rails generate migration add_remember_token_to_users remember_token:string
-$ rails db:migrate
-  Add #create_remember_token to before_create for User
-  Create users in console
-  Add #create to SessionsController
-  Include SessionsHelper in ApplicationController
-  Add #log_in in SessionsHelper
-  Add #current_user and #current_user=
-  Add #log_out
-  Add log_out to routes
-  Make application layout show 'Log out' when logged in
-$ rails generate model Event address:string date:datetime
-$ rails generate controller Events new create
-$ rails generate model Invite accepted:boolean
-$ rails generate controller Invites new create
-$ rails db:migrate
-$ rails generate migration AddForeignKeysToEvent user:references
-$ rails generate migration AddForeignKeysToInvite user:references  \
-                                                  event:references
-$ rails db:migrate
-  Add user/event/invite associations to models
-  Restrict #new and #create in Event to logged_in users
-  Make form for new event
-  Add #create to EventsController
-  Make show events in event/index.html.erb
-  Restrict #new and #create in Invite to Event owner users
-  Make form for new invitation
-  Add #create to InvitesController
-  Make show invitations in invite/index.html.erb
-  Make form for accept invitation
-  Add ##accept## to InvitesController
-  Make show accepted invitations in ####.html.erb
-
-----------
-
-Sign-up page
-  Name, Email, Password, PasswordConfirmation
-  -- Show user upon creating?
-  --   Events made
-  --   Events attending
-Create new event page
-  Title, Description, Location, Date[calendar], StartTime[dropdown?]
-  -- Show event upon creating?
-  --    Information
-  --    User Attending
-  --    Edit/Delete // Attend
-
-Profile has My Events
-Join events by clicking this hitting Attend
-Or only event creator can add people, from a list of users?
+  Add logout
+  Add homepage and root url
+  Add layouts to reduce repetition
+  Add user validation
+  Add user creation
+  Add event validation
+  Add event editing
+  Add invitation form
+  Add invitation editing
+  Add invitation to user/event dependencies
+  Add invitation acceptance/rejection
+  Add tests
+  Add styling
