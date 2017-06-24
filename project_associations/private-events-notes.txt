@@ -80,9 +80,15 @@ $ rails g migration AddGuestToInvite event:references guest:references
   Add associations to User, Event, and Invite models
 $ rails db:migrate
 
+-- Make means to invite people to 
+---- user = User.first
+     event = user.events.first
+     event.invite(User.last)
+     event.attendee.all
+     user.attended_event.all
+     
+-- make form, then make routes and controller
 
-  Add invite routes?
-# Make invite list when creating events
 
 
 $ rails g migration AddAttendeeToEvent attendee:references
