@@ -9,3 +9,11 @@
     <h3><%= link_to event.title, event %></h3>
   <% end %>
 <% end %>
+
+<% if @user.attended_events.any? %>
+  <h2>Attending Events (<%= @user.attended_events.count %>)</h2>
+  <% @user.attended_events.each do |event| %>
+    <h3><%= link_to event.title, event %></h3>
+    <span>Hosted by <%= link_to event.creator.name, event.creator %></span>
+  <% end %>
+<% end %>
