@@ -4,6 +4,6 @@
 <h1>All Events</h1>
 
 <% @events.each do |event| %>
-  <h2><%= event.title || "Untitled Event" %></h2>
-  <span>Posted by <%= event.creator.name %></span>
+  <h2><%= link_to event.title, event %></h3>
+  <span>Posted by <%= link_to event.creator.name, event.creator %></span>
 <% end %>

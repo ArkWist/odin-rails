@@ -2,4 +2,4 @@
 <p>Find me in app/views/events/show.html.erb</p>
 
 <h1>Page for <%= @event.title %></h1>
-<h2>Created by <%= @event.creator.name %></h2>
+<h2>Created by <%= link_to @event.creator.name, @event.creator %></h2>
