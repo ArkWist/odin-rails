@@ -4,6 +4,15 @@
 <h1>Page for <%= @event.title %></h1>
 <h2>Created by <%= link_to @event.creator.name, @event.creator %></h2>
 
+<% if logged_in? && current_user?(@event.creator) %>
+  <h2>Invite Attendees</h2>
+  
+  <% @uninvited_users.each do |user| %>
+    <p><%= link_to "Invite", invite_path(invite:{attended_event: @event, attendee: user}) %> <%= user.name %></p>
+  <% end %>
+
+<% end %>
+
 <% if @event.attendees.any? %>
   <h2>Attendees (<%= @event.attendees.count %>)</h2>
   <% @event.attendees.each do |attendee| %>

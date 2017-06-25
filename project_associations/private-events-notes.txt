@@ -58,14 +58,18 @@ $ rails db:migrate
 CLEAN-UP
 
   Add logout
+  Add invitation form << invite people from event page
+                      << also when creating event?
+  Restrict pages to logged-in users
+  Move user#upcoming/previous from model to controller, or opposite?
   Add homepage and root url
   Add layouts to reduce repetition
   Add user validation
   Add user creation
   Add event validation
   Add event editing
-  Add invitation form
   Add invitation editing
+  Make invitations uses checkboxes
   Add invitation to user/event dependencies
   Add invitation acceptance/rejection
   Add tests
