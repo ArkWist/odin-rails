@@ -80,4 +80,15 @@ THINGS TO FIX
 > Revisit models and associations
 > Perhaps they are wrong
 > Like, why does Event have attendee but User doesn't have events_attended
-> Should they both have them, or hould they have neither?
+> Should they both have them, or should they have neither?
+
+Invite Marth to Invasion:
+$ invite1 = event3.invites.build(attendee: user1)
+
+Invite Marth to Pherae:
+$ invite2 = user1.invites.build(attended_event: event1)
+
+Invite Roy to Smash Bros:
+$ invite3 = Invite.create(attendee: user2, attended_event: event2)
+
+user1.
