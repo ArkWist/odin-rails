@@ -27,11 +27,10 @@ class EventsController < ApplicationController
   def invite
     #if event_creator?
       @attended_event = Event.find(invite_params[:attended_event])
-      puts "Event Title: #{@attended_event.title}"
       @attendee       = User.find(invite_params[:attendee])
-      puts "Attendee Name: #{@attendee.name}"
-      @invite         = @attended_event.invites.build(attendee_id: @attendee)
+      @invite         = @attended_event.invites.build(attendee: @attendee)
       @invite.save
+      redirect_to @attended_event
     #end
   end
   

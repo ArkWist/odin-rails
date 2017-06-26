@@ -82,13 +82,16 @@ THINGS TO FIX
 > Like, why does Event have attendee but User doesn't have events_attended
 > Should they both have them, or should they have neither?
 
-Invite Marth to Invasion:
+Testing
+
+$ user1 = User.new(name: "Marth")
+$ user2 = User.new(name: "Roy")
+$ user3 = User.new(name: "Sigurd")
+
+$ event1 = user2.events.build(title: "Return to Pherae", date: "2002-03-29")
+$ event2 = user1.events.build(title: "Smash Brothers", date: "2001-11-21")
+$ event3 = user3.events.build(title: "Invasion", date: "2018-06-26")
+
 $ invite1 = event3.invites.build(attendee: user1)
-
-Invite Marth to Pherae:
-$ invite2 = user1.invites.build(attended_event: event1)
-
-Invite Roy to Smash Bros:
-$ invite3 = Invite.create(attendee: user2, attended_event: event2)
-
-user1.
+$ invite2 = event1.invites.build(attendee: user1)
+$ invite3 = event2.invites.build(attendee: user2)
