@@ -4,4 +4,6 @@ class Invite < ApplicationRecord
   
   validates :attendee_id,       presence: true
   validates :attended_event_id, presence: true
+  
+  validates :attendee, uniqueness: { scope: :attended_event_id }
 end

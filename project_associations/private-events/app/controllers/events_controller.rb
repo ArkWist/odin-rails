@@ -26,6 +26,7 @@ class EventsController < ApplicationController
   
   def invite
     #if event_creator?
+    #if validates?
       @attended_event = Event.find(invite_params[:attended_event])
       @attendee       = User.find(invite_params[:attendee])
       @invite         = @attended_event.invites.build(attendee: @attendee)

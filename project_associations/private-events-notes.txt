@@ -57,9 +57,8 @@ $ rails db:migrate
   
 CLEAN-UP
 
-  Add logout
-  Add invitation form << invite people from event page
-                      << also when creating event?
+  Add validations and duplicate protection to Invites
+  Add default scopes to enforce order
   Restrict pages to logged-in users
   Move user#upcoming/previous from model to controller, or opposite?
   Add homepage and root url
@@ -74,24 +73,3 @@ CLEAN-UP
   Add invitation acceptance/rejection
   Add tests
   Add styling
-  
-THINGS TO FIX
-
-> Revisit models and associations
-> Perhaps they are wrong
-> Like, why does Event have attendee but User doesn't have events_attended
-> Should they both have them, or should they have neither?
-
-Testing
-
-$ user1 = User.new(name: "Marth")
-$ user2 = User.new(name: "Roy")
-$ user3 = User.new(name: "Sigurd")
-
-$ event1 = user2.events.build(title: "Return to Pherae", date: "2002-03-29")
-$ event2 = user1.events.build(title: "Smash Brothers", date: "2001-11-21")
-$ event3 = user3.events.build(title: "Invasion", date: "2018-06-26")
-
-$ invite1 = event3.invites.build(attendee: user1)
-$ invite2 = event1.invites.build(attendee: user1)
-$ invite3 = event2.invites.build(attendee: user2)
