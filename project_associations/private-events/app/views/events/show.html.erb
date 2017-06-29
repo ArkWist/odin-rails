@@ -8,8 +8,10 @@
   <h2>Invite Attendees</h2>
   
   <% @uninvited_users.each do |user| %>
-    <p><%= link_to "Invite", invite_path(invite:{attended_event: @event, attendee: user}) %> <%= link_to user.name, user %></p>
+    <p><%= link_to "Invite", event_invite_index_path(@event, attendee: user), method: :post %> <%= link_to user.name, user %></p>
   <% end %>
+
+#, attended_event: @event, attendee: user
 
 <% end %>
 

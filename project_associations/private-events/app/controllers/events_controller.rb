@@ -24,17 +24,6 @@ class EventsController < ApplicationController
     @previous_events = previous_events
   end
   
-  def invite
-    #if event_creator?
-    #if validates?
-      @attended_event = Event.find(invite_params[:attended_event])
-      @attendee       = User.find(invite_params[:attendee])
-      @invite         = @attended_event.invites.build(attendee: @attendee)
-      @invite.save
-      redirect_to @attended_event
-    #end
-  end
-  
   private
   
     def event_params
@@ -52,14 +41,5 @@ class EventsController < ApplicationController
     def uninvited_users
       User.where.not(id: @event.attendee_ids).where.not(id: @event.creator_id)
     end
-    
-    def event_creator?
-      Event.find(invite_params[:attended_event]).creator == @current_user
-    end
-    
-    def invite_params
-      params.require(:invite).permit(:attended_event, :attendee)
-    end
-
   
 end

@@ -4,14 +4,14 @@ Rails.application.routes.draw do
   #post 'invite/create'
   #get  'invite/show'
   
-  get 'invite', to: 'events#invite'
+  #get 'invite', to: 'events#invite'
 
   #get  '/newevent', to: 'events#new'
   #post '/newevent', to: 'events#create'
-  get  'events/show'
-  get  'events/index'
-  get  'events/new'
-  post 'events/create'
+  #get  'events/show'
+  #get  'events/index'
+  #get  'events/new'
+  #post 'events/create'
   
   #get  '/events/new', to: 'events#new'
   #post '/events/new', to: 'events#create'
@@ -26,7 +26,18 @@ Rails.application.routes.draw do
   post   '/signup', to: 'users#create'
   get    'users/show'
 
-  resources :users, :events#, :invites
+  resources :users
+  #resources :invites, only: [:create, :destroy]
+  
+  resources :events do
+    resources :invite
+  end
+
+  #resources :events do
+  #  match '/events/:id/invite', to: 'invite#show', via: 'get'
+  #  resources :invites , only: [:index, :show, :destroy, :create ]
+  #end
+
 
   #get  '/login', to: 'users#new'
   #post '/login', to: 'users#create'
