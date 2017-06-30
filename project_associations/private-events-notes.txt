@@ -57,7 +57,7 @@ $ rails db:migrate
   
 CLEAN-UP
 
-  Add uninvite links
+  Only allow owner to invite/uninvite, or see such links
   Restrict pages to logged-in users
   Move user#upcoming/previous from model to controller, or opposite?
   Add homepage and root url

@@ -17,7 +17,11 @@
 <% if @event.attendees.any? %>
   <h2>Attendees (<%= @event.attendees.count %>)</h2>
   <% @event.attendees.each do |user| %>
-    <h3><%= link_to "Uninvite", event_invite_path(@event, attendee: user), method: :delete %>
-      <%= link_to user.name, user %></h3>
+    <h3>
+      <% if logged_in? && current_user?(@event.creator) %>
+        <%= link_to "Uninvite", event_invite_path(@event, attendee: user), method: :delete %>
+      <% end %>
+      <%= link_to user.name, user %>
+    </h3>
   <% end %>
 <% end %>

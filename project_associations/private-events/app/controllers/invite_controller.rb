@@ -31,7 +31,7 @@ class InviteController < ApplicationController
   private
   
     def correct_user
-      redirect_to users if @current_user != Event.find_by(id: params[:event_id]).creator
+      redirect_to @current_user if @current_user != Event.find_by(id: params[:event_id]).creator
     end
     
     def event_param
