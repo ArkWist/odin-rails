@@ -6,18 +6,18 @@
 
 <% if logged_in? && current_user?(@event.creator) %>
   <h2>Invite Attendees</h2>
-  
   <% @uninvited_users.each do |user| %>
-    <p><%= link_to "Invite", event_invite_index_path(@event, attendee: user), method: :post %> <%= link_to user.name, user %></p>
+    <h3>
+      <%= link_to "Invite", event_invite_index_path(@event, attendee: user), method: :post %>
+      <%= link_to user.name, user %>
+    </h3>
   <% end %>
-
-#, attended_event: @event, attendee: user
-
 <% end %>
 
 <% if @event.attendees.any? %>
   <h2>Attendees (<%= @event.attendees.count %>)</h2>
-  <% @event.attendees.each do |attendee| %>
-    <h3><%= link_to attendee.name, attendee %></h3>
+  <% @event.attendees.each do |user| %>
+    <h3><%= link_to "Uninvite", event_invite_path(@event, attendee: user), method: :delete %>
+      <%= link_to user.name, user %></h3>
   <% end %>
 <% end %>
