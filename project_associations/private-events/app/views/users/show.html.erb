@@ -3,16 +3,16 @@
 
 <h1>Page for <%= @user.name %></h1>
 
-<% if @user.upcoming_events.any? %>
-  <h2>Upcoming Events (<%= @user.upcoming_events.count %>)</h2>
-  <% @user.upcoming_events.each do |event| %>
+<% if @user.events.upcoming_events.any? %>
+  <h2>Upcoming Events (<%= @user.events.upcoming_events.count %>)</h2>
+  <% @user.events.upcoming_events.each do |event| %>
     <h3><%= link_to event.title, event %></h3>
   <% end %>
 <% end %>
 
-<% if @user.previous_events.any? %>
-  <h2>Previous Events (<%= @user.previous_events.count %>)</h2>
-  <% @user.previous_events.each do |event| %>
+<% if @user.events.previous_events.any? %>
+  <h2>Previous Events (<%= @user.events.previous_events.count %>)</h2>
+  <% @user.events.previous_events.each do |event| %>
     <h3><%= link_to event.title, event %></h3>
   <% end %>
 <% end %>

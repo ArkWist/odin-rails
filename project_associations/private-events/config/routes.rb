@@ -1,22 +1,4 @@
 Rails.application.routes.draw do
-  
-  #get  'invite/new'
-  #post 'invite/create'
-  #get  'invite/show'
-  
-  #get 'invite', to: 'events#invite'
-
-  #get  '/newevent', to: 'events#new'
-  #post '/newevent', to: 'events#create'
-  #get  'events/show'
-  #get  'events/index'
-  #get  'events/new'
-  #post 'events/create'
-  
-  #get  '/events/new', to: 'events#new'
-  #post '/events/new', to: 'events#create'
-  
-  # MAKE NEWEVENT USE /events/new
 
   get    'login',  to: 'sessions#new'
   post   'login',  to: 'sessions#create'
@@ -27,20 +9,8 @@ Rails.application.routes.draw do
   get    'users/show'
 
   resources :users
-  #resources :invites, only: [:create, :destroy]
-  
   resources :events do
     resources :invite
   end
 
-  #resources :events do
-  #  match '/events/:id/invite', to: 'invite#show', via: 'get'
-  #  resources :invites , only: [:index, :show, :destroy, :create ]
-  #end
-
-
-  #get  '/login', to: 'users#new'
-  #post '/login', to: 'users#create'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

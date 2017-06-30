@@ -57,8 +57,9 @@ $ rails db:migrate
   
 CLEAN-UP
 
-  Only allow owner to invite/uninvite, or see such links
-  Restrict pages to logged-in users
+  Simplify attended_event params in event controller?
+  Event list with scope
+  # Restrict pages to logged-in users
   Move user#upcoming/previous from model to controller, or opposite?
   Add homepage and root url
   Add layouts to reduce repetition
@@ -66,9 +67,6 @@ CLEAN-UP
   Add user creation
   Add event validation
   Add event editing
-  Add invitation editing
-  Make invitations uses checkboxes
-  Add invitation to user/event dependencies
   Add invitation acceptance/rejection
   Add tests
   Add styling
