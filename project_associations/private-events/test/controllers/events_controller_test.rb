@@ -4,6 +4,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get events_new_url
     assert_response :success
+    assert_select "title", "New event - Private Events"
   end
 
   test "should get create" do
@@ -19,6 +20,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get events_index_url
     assert_response :success
+    assert_select "title", "Events - Private Events"
   end
 
 end

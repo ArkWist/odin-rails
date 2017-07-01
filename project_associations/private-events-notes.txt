@@ -61,6 +61,10 @@ $ rails g controller StaticPages home
   
 CLEAN-UP
 
+$ rails g migration AddEmailPasswordToUser email:string password_digest:string
+$ rails g migration AddIndexToUsersEmail
+  Add email and password_digest
+  Add tests
   # Restrict pages to logged-in users
   Add homepage and root url
   Add layouts to reduce repetition
@@ -69,7 +73,6 @@ CLEAN-UP
   Add event validation
   Add event editing
   Add invitation acceptance/rejection
-  Add tests
   Add styling
 
 
