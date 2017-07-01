@@ -58,11 +58,12 @@ $ rails db:migrate
 STATIC PAGES
 
 $ rails g controller StaticPages home
-  
-CLEAN-UP
 
 $ rails g migration AddEmailPasswordToUser email:string password_digest:string
 $ rails g migration AddIndexToUsersEmail
+  
+CLEAN-UP
+
   Add email and password_digest
   Add tests
   # Restrict pages to logged-in users
@@ -76,3 +77,10 @@ $ rails g migration AddIndexToUsersEmail
   Add styling
 
 
+
+
+Labour market restrictions on visa holders should be relaxed. Immigrants can 'take jobs' when 
+
+If visa holders had more freedom to change jobs and compete in the wider labour market, they would no longer have to settle for the reduced wages and protections that make them economically attractive for employers.
+
+Visa holders wouldn't 
