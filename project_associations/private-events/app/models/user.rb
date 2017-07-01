@@ -5,16 +5,6 @@ class User < ApplicationRecord
   
   validates :name, presence: true,
                    uniqueness: { case_sensitive: true }
-  
-  
-  #def upcoming_events
-  #  events.where("date >= ?", DateTime.now.to_date)
-  #  # Should show nearest first
-  #end
-  
-  #def previous_events
-  #  events.where("date < ?", DateTime.now.to_date)
-  #  # Should show nearest first
-  #end
+
   
 end

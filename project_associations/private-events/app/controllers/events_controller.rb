@@ -20,22 +20,12 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    @upcoming_events = upcoming_events
-    @previous_events = previous_events
   end
   
   private
   
     def event_params
       params.require(:event).permit(:title, :location, :description, :date)
-    end
-    
-    def upcoming_events
-      Event.where("date >= ?", DateTime.now.to_date)
-    end
-    
-    def previous_events
-      Event.where("date < ?", DateTime.now.to_date)
     end
     
     def uninvited_users

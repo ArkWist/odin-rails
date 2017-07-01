@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   #validates :description, presence: true
   #validates :location,    presence: true
   
-  scope :upcoming_events, -> { where("date >= ?", DateTime.now.to_date) }
-  scope :previous_events, -> { where("date < ?",  DateTime.now.to_date) }
+  scope :upcoming, -> { where("date >= ?", DateTime.now.to_date).order(date: :asc) }
+  scope :previous, -> { where("date < ?",  DateTime.now.to_date).order(date: :desc) }
   
 end
