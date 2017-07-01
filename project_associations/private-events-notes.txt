@@ -54,13 +54,14 @@ $ rails db:migrate
   Add previous/upcoming distinction to Event's #index
   Refactor previous/upcoming into scopes
   Add navigation links
+
+STATIC PAGES
+
+$ rails g controller StaticPages home
   
 CLEAN-UP
 
-  Simplify attended_event params in event controller?
-  Event list with scope
   # Restrict pages to logged-in users
-  Move user#upcoming/previous from model to controller, or opposite?
   Add homepage and root url
   Add layouts to reduce repetition
   Add user validation
