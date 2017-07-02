@@ -1,12 +1,9 @@
-<% provide(:title, "New event") %>
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
-
-<h1>Create event</h1>
+<% provide(:title, "Edit event") %>
+<h1>Update event <%= @event.title %></h1>
 
 <%= form_for @event do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  
+
   <%= f.label :title %>
   <%= f.text_field :title %>
   
@@ -19,6 +16,5 @@
   <%= f.label :date %>
   <%= f.date_field :date %>
   
-  <%= f.submit "Create event" %>
-  
+  <%= f.submit "Save changes" %>
 <% end %>

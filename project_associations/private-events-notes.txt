@@ -64,9 +64,9 @@ $ rails g migration AddIndexToUsersEmail
   
 CLEAN-UP
 
-  Add event deletion
+  Add event deletion to event page too
+  And event editing
   Add event validation
-  Add event editing
   Add event error flash?
   Restrict #new pages to logged-in users
   Add tests for controllers

@@ -5,6 +5,19 @@
 <h1>Page for <%= @event.title %></h1>
 <h2>Created by <%= link_to @event.creator.name, @event.creator %></h2>
 
+<h2>Description</h2>
+<p><%= @event.description %></p>
+
+<h2>Location</h2>
+<p><%= @event.location %></p>
+
+<h2>Date: <%= @event.date %></h2>
+
+<h2>
+  <%= link_to "Edit", edit_event_path %>
+  <%= link_to "Delete", @event, method: :delete %>
+</h2>
+
 <% if logged_in? && current_user?(@event.creator) %>
   <h2>Invite Attendees</h2>
   <% @uninvited_users.each do |user| %>
