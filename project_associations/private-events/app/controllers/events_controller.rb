@@ -38,7 +38,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
-      flash[:success] = "Event updated"
+      flash[:success] = "Event #{@event.title} updated"
       redirect_to @event
     else
       render 'edit'

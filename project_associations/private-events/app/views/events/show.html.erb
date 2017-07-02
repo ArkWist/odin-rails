@@ -18,23 +18,25 @@
   <%= link_to "Delete", @event, method: :delete %>
 </h2>
 
-<% if logged_in? && current_user?(@event.creator) %>
-  <h2>Invite Attendees</h2>
-  <% @uninvited_users.each do |user| %>
-    <h3>
-      <%= link_to "Invite", event_invite_index_path(@event, attendee: user), method: :post %>
-      <%= link_to user.name, user %>
-    </h3>
-  <% end %>
-<% end %>
-
 <% if @event.attendees.any? %>
   <h2>Attendees (<%= @event.attendees.count %>)</h2>
   <% @event.attendees.each do |user| %>
     <h3>
       <% if logged_in? && current_user?(@event.creator) %>
         <%= link_to "Uninvite", event_invite_path(@event, attendee: user), method: :delete %>
+      <% elsif logged_in? && current_user?(user) %>
+        <%= link_to "Leave", event_invite_path(@event, attendee: user), method: :delete %>
       <% end %>
+      <%= link_to user.name, user %>
+    </h3>
+  <% end %>
+<% end %>
+
+<% if logged_in? && current_user?(@event.creator) %>
+  <h2>Invite Attendees</h2>
+  <% @uninvited_users.each do |user| %>
+    <h3>
+      <%= link_to "Invite", event_invite_index_path(@event, attendee: user), method: :post %>
       <%= link_to user.name, user %>
     </h3>
   <% end %>

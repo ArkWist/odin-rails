@@ -9,6 +9,7 @@
   <% @user.events.upcoming.each do |event| %>
     <h3>
       <% if logged_in? && current_user?(@user) %>
+        <%= link_to "Edit", edit_event_path(event) %>
         <%= link_to "Delete", event, method: :delete %>
       <% end %>
       <%= link_to event.title, event %>
@@ -21,6 +22,7 @@
   <% @user.events.previous.each do |event| %>
     <h3>
       <% if logged_in? && current_user?(@user) %>
+        <%= link_to "Edit", edit_event_path(event) %>
         <%= link_to "Delete", event, method: :delete %>
       <% end %>
       <%= link_to event.title, event %>
@@ -31,7 +33,10 @@
 <% if @user.attended_events.any? %>
   <h2>Attending Events (<%= @user.attended_events.count %>)</h2>
   <% @user.attended_events.each do |event| %>
-    <h3><%= link_to event.title, event %></h3>
+    <h3>
+      <%= link_to "Leave", event_invite_path(event, attendee: @user), method: :delete %>
+      <%= link_to event.title, event %>
+    </h3>
     <span>Hosted by <%= link_to event.creator.name, event.creator %></span>
   <% end %>
 <% end %>

@@ -1,7 +1,9 @@
 class InviteController < ApplicationController
   #before_action :logged_in_user, only: :create
   before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: [:create, :destroy]
+  #before_action :correct_user,   only: [:create, :destroy]
+  before_action :event_owner,    only: :create
+  before_action :uninvite_power, only: :destroy
 
   def create
     @attendee       = User.find_by(id: user_param)
@@ -24,14 +26,18 @@ class InviteController < ApplicationController
     if @invite.destroyed?
       redirect_to @attended_event
     else
-      redirect_to @current_user
+      redirect_to request.referrer || @current_user
     end
   end
 
   private
   
-    def correct_user
-      redirect_to @current_user if @current_user != Event.find_by(id: params[:event_id]).creator
+    def event_owner
+      redirect_to @current_user if @current_user != Event.find_by(id: event_param).creator
+    end
+    
+    def uninvite_power
+      redirect_to @current_user if @current_user != Event.find_by(id: event_param).creator && @current_user != User.find_by(id: user_param)
     end
     
     def event_param

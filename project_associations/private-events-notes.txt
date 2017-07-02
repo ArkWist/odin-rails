@@ -64,12 +64,8 @@ $ rails g migration AddIndexToUsersEmail
   
 CLEAN-UP
 
-  Add event deletion to event page too
-  And event editing
-  Add event validation
-  Add event error flash?
-  Restrict #new pages to logged-in users
+  Attended events should have scope
+  Add invitation rejection
   Add tests for controllers
   Add layouts to reduce repetition
-  Add invitation rejection
   Add styling
