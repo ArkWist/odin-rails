@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  location: MyString
-  description: MyText
+event_one:
+  title: Event One
+  location: Somewhere
+  description: It's gonna be great'
   date: 2017-06-19 21:30:07
+  creator: user_one
 
-two:
-  title: MyString
-  location: MyString
-  description: MyText
+event_two:
+  title: Event Two
+  location: Anywhere
+  description: So great
   date: 2017-06-19 21:30:07
+  creator: user_two

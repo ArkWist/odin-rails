@@ -64,16 +64,13 @@ $ rails g migration AddIndexToUsersEmail
   
 CLEAN-UP
 
-  Add email and password_digest
-  Add tests
-  # Restrict pages to logged-in users
-  Add homepage and root url
-  Add layouts to reduce repetition
-  Add user validation
-  Add user creation
   Add event validation
   Add event editing
-  Add invitation acceptance/rejection
+  Add event error reporting
+  Restrict #new pages to logged-in users
+  Add tests
+  Add layouts to reduce repetition
+  Add invitation rejection
   Add styling
 
 
