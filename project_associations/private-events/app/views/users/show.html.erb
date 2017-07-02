@@ -7,14 +7,24 @@
 <% if @user.events.upcoming.any? %>
   <h2>Upcoming Events (<%= @user.events.upcoming.count %>)</h2>
   <% @user.events.upcoming.each do |event| %>
-    <h3><%= link_to event.title, event %></h3>
+    <h3>
+      <% if logged_in? && current_user?(@user) %>
+        <%= link_to "Delete", event, method: :delete %>
+      <% end %>
+      <%= link_to event.title, event %>
+    </h3>
   <% end %>
 <% end %>
 
 <% if @user.events.previous.any? %>
   <h2>Previous Events (<%= @user.events.previous.count %>)</h2>
   <% @user.events.previous.each do |event| %>
-    <h3><%= link_to event.title, event %></h3>
+    <h3>
+      <% if logged_in? && current_user?(@user) %>
+        <%= link_to "Delete", event, method: :delete %>
+      <% end %>
+      <%= link_to event.title, event %>
+    </h3>
   <% end %>
 <% end %>
 

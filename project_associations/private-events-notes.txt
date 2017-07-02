@@ -64,20 +64,12 @@ $ rails g migration AddIndexToUsersEmail
   
 CLEAN-UP
 
+  Add event deletion
   Add event validation
   Add event editing
-  Add event error reporting
+  Add event error flash?
   Restrict #new pages to logged-in users
-  Add tests
+  Add tests for controllers
   Add layouts to reduce repetition
   Add invitation rejection
   Add styling
-
-
-
-
-Labour market restrictions on visa holders should be relaxed. Immigrants can 'take jobs' when 
-
-If visa holders had more freedom to change jobs and compete in the wider labour market, they would no longer have to settle for the reduced wages and protections that make them economically attractive for employers.
-
-Visa holders wouldn't 

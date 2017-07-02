@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :invite]
+  before_action :logged_in_user, only: [:new, :create, :destroy]
+  before_action :correct_user,   only: :destroy
   
   def new
     @event = Event.new
@@ -19,6 +20,12 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @uninvited_users = uninvited_users
   end
+  
+  def destroy
+    @event.destroy
+    flash[:success] = "Event deleted"
+    redirect_to request.referrer || root_url
+  end
 
   def index
     @events = Event.all
@@ -32,6 +39,11 @@ class EventsController < ApplicationController
     
     def uninvited_users
       User.where.not(id: @event.attendee_ids).where.not(id: @event.creator_id)
+    end
+    
+    def correct_user
+      @event = current_user.events.find_by(id: params[:id])
+      redirect_to current_user if @event.nil?
     end
   
 end
