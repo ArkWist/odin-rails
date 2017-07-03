@@ -5,14 +5,14 @@
 <% if @user.events.upcoming.any? %>
   <h2>Upcoming Events (<%= @user.events.upcoming.count %>)</h2>
   <% @user.events.upcoming.each do |event| %>
-    <%= render 'links' %>
+    <h3><%= render partial: 'links', locals: {event: event} %></h3>
   <% end %>
 <% end %>
 
 <% if @user.events.previous.any? %>
   <h2>Previous Events (<%= @user.events.previous.count %>)</h2>
   <% @user.events.previous.each do |event| %>
-    <%= render 'links' %>
+    <h3><%= render partial: 'links', locals: {event: event} %></h3>
   <% end %>
 <% end %>
 

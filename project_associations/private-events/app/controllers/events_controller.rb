@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :logged_in_user, only: [:new, :create, :destroy, :edit, :update]
+  before_action :event_owner,    only: [:destroy, :edit, :update]
   
   def new
     @event = Event.new
@@ -59,6 +59,10 @@ class EventsController < ApplicationController
     def correct_user
       @event = current_user.events.find_by(id: params[:id])
       redirect_to current_user if @event.nil?
+    end
+    
+    def event_owner
+      redirect_to @current_user if @current_user != Event.find_by(id: event_param).creator
     end
   
 end

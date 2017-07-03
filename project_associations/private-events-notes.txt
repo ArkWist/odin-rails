@@ -67,3 +67,86 @@ CLEAN-UP
   Regularise HTML
   Add styling
   Add tests for controllers
+  Add custom footer with Source link
+  Order attendees?
+  Make homepage userpage when signed in
+  Cancel rather than delete events
+  ---- FOr some reason can edit/delete other people's events
+  Make so no event making in past
+  And can't edit event to be in past?
+  
+-------------------------------------------------
+
+Home
+
+Private Events:          Home   Events   About  Log In
+
+     Private Events
+     
+     Sign up and host events
+     
+     Register Now!
+     
+                                                Source
+
+-------------------------------------------------
+
+User#show
+
+Private Events:          Home   Events   About  Log Out
+
+                  Name
+              Create Event
+              
+Upcoming
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+Attended
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+Attending
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+-------------------------------------------------
+
+Event#index
+
+Browse event list
+
+Upcoming
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+pages
+
+Past
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+pages
+
+-------------------------------------------------
+
+Event#show
+
+             Event Name
+             Hosted by:
+             
+             Edit  Cancel  Leave
+             
+About
+
+Location
+
+Attendees
+
+Uninvite  User.name
+
+pages
+
+Invitable
+
+Invite  User.name

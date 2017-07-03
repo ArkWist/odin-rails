@@ -1,7 +1,0 @@
-<h3>
-  <% if logged_in? && current_user?(@user) %>
-    <%= link_to "Edit", edit_event_path(event) %>
-    <%= link_to "Delete", event, method: :delete %>
-  <% end %>
-  <%= link_to event.title, event %>
-</h3>

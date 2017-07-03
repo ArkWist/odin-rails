@@ -11,10 +11,12 @@
 
 <h2>Date: <%= @event.date %></h2>
 
-<h2>
-  <%= link_to "Edit", edit_event_path %>
-  <%= link_to "Delete", @event, method: :delete %>
-</h2>
+<% if logged_in? && current_user?(@event.creator) %>
+  <h2>
+    <%= link_to "Edit", edit_event_path %>
+    <%= link_to "Delete", @event, method: :delete %>
+  </h2>
+<% end %>
 
 <% if @event.attendees.any? %>
   <h2>Attendees (<%= @event.attendees.count %>)</h2>
