@@ -12,6 +12,7 @@ class EventsController < ApplicationController
       flash[:success] = "You are now hosting the event #{@event.title}."
       redirect_to @event
     else
+      #flash.now[:danger] = "Invalid name/password combination."
       render 'new'
     end
   end

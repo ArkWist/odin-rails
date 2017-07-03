@@ -1,32 +1,18 @@
 <% provide(:title, @user.name) %>
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
 
 <h1>Page for <%= @user.name %></h1>
 
 <% if @user.events.upcoming.any? %>
   <h2>Upcoming Events (<%= @user.events.upcoming.count %>)</h2>
   <% @user.events.upcoming.each do |event| %>
-    <h3>
-      <% if logged_in? && current_user?(@user) %>
-        <%= link_to "Edit", edit_event_path(event) %>
-        <%= link_to "Delete", event, method: :delete %>
-      <% end %>
-      <%= link_to event.title, event %>
-    </h3>
+    <%= render 'links' %>
   <% end %>
 <% end %>
 
 <% if @user.events.previous.any? %>
   <h2>Previous Events (<%= @user.events.previous.count %>)</h2>
   <% @user.events.previous.each do |event| %>
-    <h3>
-      <% if logged_in? && current_user?(@user) %>
-        <%= link_to "Edit", edit_event_path(event) %>
-        <%= link_to "Delete", event, method: :delete %>
-      <% end %>
-      <%= link_to event.title, event %>
-    </h3>
+    <%= render 'links' %>
   <% end %>
 <% end %>
 

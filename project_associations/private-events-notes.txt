@@ -64,8 +64,6 @@ $ rails g migration AddIndexToUsersEmail
   
 CLEAN-UP
 
-  Attended events should have scope
-  Add invitation rejection
-  Add tests for controllers
-  Add layouts to reduce repetition
+  Regularise HTML
   Add styling
+  Add tests for controllers
