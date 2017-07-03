@@ -31,4 +31,4 @@ Completed projects from [The Odin Project](http://www.theodinproject.com/)'s *[R
 #### Advanced Forms and Active Record
 - [Members Only](https://github.com/daglilley/odin-rails/tree/master/project_authentication/members-only)
 - [Data Model Scenarios](https://github.com/daglilley/odin-rails/tree/master/project_associations/scenarios)
-- [Private Events](tree/master/project_associations/private-events)
+- [Private Events](project_associations/private-events)
