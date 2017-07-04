@@ -31,4 +31,4 @@ Completed projects from [The Odin Project](http://www.theodinproject.com/)'s *[R
 #### Advanced Forms and Active Record
 - [Members Only](project_authentication/members-only)
 - [Data Model Scenarios](project_associations/scenarios)
-- [Private Events](project_associations/private-events)
+- [Private Events](project_associations/private-events) ([online](https://odin-private-event.herokuapp.com/)))
