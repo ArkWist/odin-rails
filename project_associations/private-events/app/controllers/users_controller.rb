@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :not_logged_in_user, only: [:new, :create]
   
   def new
     @user = User.new
@@ -17,6 +18,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @upcoming_events = @user.attended_events.upcoming.paginate(page: params[:upcoming_page])
+    @previous_events = @user.attended_events.previous.paginate(page: params[:previous_page])
+    @hosted_events = @user.events.paginate(page: params[:hosted_page])
   end
   
   private

@@ -7,29 +7,33 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.build(event_params)
+    @event  = current_user.events.build(event_params)
     if @event.save
+      @invite = @event.invites.build(attendee: current_user)
+      @invite.save
       flash[:success] = "You are now hosting the event #{@event.title}."
       redirect_to @event
     else
-      #flash.now[:danger] = "Invalid name/password combination."
+      flash.now[:danger] = "Invalid event information."
       render 'new'
     end
   end
 
   def show
     @event = Event.find(params[:id])
-    @uninvited_users = uninvited_users
+    @invited_users = @event.attendees.paginate(page: params[:invited_page])
+    @uninvited_users = uninvited_users.paginate(page: params[:uninvited_page])
   end
   
   def destroy
     @event.destroy
     flash[:success] = "Event deleted"
-    redirect_to @current_user
+    redirect_to current_user
   end
 
   def index
-    @events = Event.all
+    @upcoming_events = Event.all.upcoming.paginate(page: params[:upcoming_page])
+    @previous_events = Event.all.previous.paginate(page: params[:previous_page])
   end
   
   def edit
@@ -53,7 +57,7 @@ class EventsController < ApplicationController
     end
     
     def uninvited_users
-      User.where.not(id: @event.attendee_ids).where.not(id: @event.creator_id)
+      User.where.not(id: @event.attendee_ids)
     end
     
     def correct_user
@@ -62,7 +66,7 @@ class EventsController < ApplicationController
     end
     
     def event_owner
-      redirect_to @current_user if @current_user != Event.find_by(id: event_param).creator
+      redirect_to current_user if current_user != Event.find(params[:id]).creator
     end
   
 end

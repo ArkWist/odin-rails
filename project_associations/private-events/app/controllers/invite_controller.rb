@@ -11,7 +11,7 @@ class InviteController < ApplicationController
     if Invite.create!(attended_event: @attended_event, attendee: @attendee)
       redirect_to @attended_event
     else
-      redirect_to @current_user
+      redirect_to current_user
     end
   end
 
@@ -26,18 +26,22 @@ class InviteController < ApplicationController
     if @invite.destroyed?
       redirect_to @attended_event
     else
-      redirect_to request.referrer || @current_user
+      redirect_to request.referrer || current_user
     end
   end
 
   private
   
     def event_owner
-      redirect_to @current_user if @current_user != Event.find_by(id: event_param).creator
+      redirect_to current_user if current_user != Event.find_by(id: event_param).creator
     end
     
     def uninvite_power
-      redirect_to @current_user if @current_user != Event.find_by(id: event_param).creator && @current_user != User.find_by(id: user_param)
+      if current_user == Event.find_by(id: event_param).creator
+        redirect_to current_user if current_user == User.find_by(id: user_param)
+      elsif current_user != User.find_by(id: user_param)
+        redirect_to current_user
+      end
     end
     
     def event_param

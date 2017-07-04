@@ -1,28 +1,36 @@
 <% provide(:title, @user.name) %>
 
-<h1>Page for <%= @user.name %></h1>
+<h1><%= @user.name %></h1>
 
-<% if @user.events.upcoming.any? %>
-  <h2>Upcoming Events (<%= @user.events.upcoming.count %>)</h2>
-  <% @user.events.upcoming.each do |event| %>
-    <h3><%= render partial: 'links', locals: {event: event} %></h3>
+<% if @upcoming_events.any? %>
+  <h2>Upcoming Events (<%= @upcoming_events.count %>)</h2>
+  <% @upcoming_events.each do |event| %>
+    <h3><%= render partial: 'attending', locals: {event: event} %></h3>
   <% end %>
 <% end %>
 
-<% if @user.events.previous.any? %>
-  <h2>Previous Events (<%= @user.events.previous.count %>)</h2>
-  <% @user.events.previous.each do |event| %>
-    <h3><%= render partial: 'links', locals: {event: event} %></h3>
+<%= will_paginate @upcoming_events %>
+
+<% if @previous_events.any? %>
+  <h2>Previous Events (<%= @previous_events.count %>)</h2>
+  <% @previous_events.each do |event| %>
+    <h3><%= render partial: 'attending', locals: {event: event} %></h3>
   <% end %>
 <% end %>
 
-<% if @user.attended_events.any? %>
-  <h2>Attending Events (<%= @user.attended_events.count %>)</h2>
-  <% @user.attended_events.each do |event| %>
-    <h3>
-      <%= link_to "Leave", event_invite_path(event, attendee: @user), method: :delete %>
-      <%= link_to event.title, event %>
-    </h3>
-    <span>Hosted by <%= link_to event.creator.name, event.creator %></span>
+<%= will_paginate @previous_events %>
+
+<% if @hosted_events.any? %>
+  <h2>Attending Events (<%= @hosted_events.count %>)</h2>
+  <% @hosted_events.each do |event| %>
+    <% if logged_in? && current_user?(@user) %>
+      <%= link_to "Edit", edit_event_path(event) %>
+      <%= link_to "Delete", event, method: :delete %>
+    <% end %>
+    <%= link_to event.title, event %>
   <% end %>
 <% end %>
+
+<%= will_paginate @hosted_events %>
+
+# Add host to invite list, and make sure logic doesn't mess up because of it

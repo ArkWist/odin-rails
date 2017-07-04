@@ -1,6 +1,6 @@
 <% provide(:title, @event.title) %>
 
-<h1>Page for <%= @event.title %></h1>
+<h1><%= @event.title %></h1>
 <h2>Created by <%= link_to @event.creator.name, @event.creator %></h2>
 
 <h2>Description</h2>
@@ -22,15 +22,17 @@
   <h2>Attendees (<%= @event.attendees.count %>)</h2>
   <% @event.attendees.each do |user| %>
     <h3>
-      <% if logged_in? && current_user?(@event.creator) %>
+      <% if logged_in? && current_user?(@event.creator) && !current_user?(user) %>
         <%= link_to "Uninvite", event_invite_path(@event, attendee: user), method: :delete %>
-      <% elsif logged_in? && current_user?(user) %>
+      <% elsif logged_in? && !current_user?(@event.creator) && current_user?(user) %>
         <%= link_to "Leave", event_invite_path(@event, attendee: user), method: :delete %>
       <% end %>
       <%= link_to user.name, user %>
     </h3>
   <% end %>
 <% end %>
+
+<%= will_paginate @invited_users %>
 
 <% if logged_in? && current_user?(@event.creator) %>
   <h2>Invite Attendees</h2>
@@ -41,3 +43,6 @@
     </h3>
   <% end %>
 <% end %>
+
+<%= will_paginate @uninvited_users %>
+

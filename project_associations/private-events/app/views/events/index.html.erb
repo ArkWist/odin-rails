@@ -2,18 +2,22 @@
 
 <h1>All Events</h1>
 
-<% if @events.upcoming.any? %>
-  <h2>Upcoming Events (<%= @events.upcoming.count %>)</h2>
-  <% @events.upcoming.each do |event| %>
+<% if @upcoming_events.any? %>
+  <h2>Upcoming Events (<%= @upcoming_events.count %>)</h2>
+  <% @upcoming_events.each do |event| %>
     <h3><%= link_to event.title, event %></h3>
     <span>Posted by <%= link_to event.creator.name, event.creator %></span>
   <% end %>
 <% end %>
 
-<% if @events.previous.any? %>
-  <h2>Previous Events (<%= @events.previous.count %>)</h2>
-  <% @events.previous.each do |event| %>
+<%= will_paginate @upcoming_events%>
+
+<% if @previous_events.any? %>
+  <h2>Previous Events (<%= @previous_events.count %>)</h2>
+  <% @previous_events.each do |event| %>
     <h3><%= link_to event.title, event %></h3>
     <span>Posted by <%= link_to event.creator.name, event.creator %></span>
   <% end %>
 <% end %>
+
+<%= will_paginate @previous_events %>

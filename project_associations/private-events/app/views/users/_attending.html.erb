@@ -1,0 +1,4 @@
+<% if logged_in? && current_user?(@user) %>
+  <%= link_to "Leave", event_invite_path(event, attendee: @user), method: :delete %>
+<% end %>
+<%= link_to event.title, event %>
