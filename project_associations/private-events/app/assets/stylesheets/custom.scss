@@ -46,7 +46,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
@@ -128,5 +128,40 @@ input {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
+  }
+}
+
+/* events */
+
+.attendees, .events {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+    font-size: 1.25em;
+    p{
+      font-size: .8em;
+    }
+  }
+}
+
+.description, .date, .location {
+  font-size: 1.5em;
+  text-align: center;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.btn-right{
+  float: right;
+  margin: auto 2px;
+}
+
+.user-event{
+  h2{
+    text-align: left;
+  }
+  p{
+    text-align: left;
   }
 }

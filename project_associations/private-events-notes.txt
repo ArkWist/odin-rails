@@ -64,16 +64,9 @@ $ rails g migration AddIndexToUsersEmail
   
 CLEAN-UP
 
-  Regularise HTML
-  Add styling
+  Order attendees with scope
   Add tests for controllers
-  Add custom footer with Source link
-  Order attendees?
-  Make homepage userpage when signed in
-  Cancel rather than delete events
-  ---- FOr some reason can edit/delete other people's events
-  Make so no event making in past
-  And can't edit event to be in past?
+  Make homepage user-page when signed in
   
 -------------------------------------------------
 

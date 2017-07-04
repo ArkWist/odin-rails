@@ -1,47 +1,56 @@
 <% provide(:title, @event.title) %>
 
 <h1><%= @event.title %></h1>
-<h2>Created by <%= link_to @event.creator.name, @event.creator %></h2>
-
-<h2>Description</h2>
-<p><%= @event.description %></p>
-
-<h2>Location</h2>
-<p><%= @event.location %></p>
-
-<h2>Date: <%= @event.date %></h2>
 
 <% if logged_in? && current_user?(@event.creator) %>
-  <h2>
-    <%= link_to "Edit", edit_event_path %>
-    <%= link_to "Delete", @event, method: :delete %>
-  </h2>
+  <div class="buttons center">
+    <%= link_to "Edit", edit_event_path, class: "btn btn-primary" %>
+    <%= link_to "Cancel", @event, method: :delete, class: "btn btn-primary" %>
+  </div>
 <% end %>
+
+<div class="user-event">
+  <h2>Host</h2>
+  <p class="description"><%= link_to @event.creator.name, @event.creator %></p>
+  
+  <h2>Description</h2>
+  <p class="description"><%= @event.description %></p>
+
+  <h2>Date</h2>
+  <p class="date"><%= @event.date.to_date %></p>
+
+  <h2>Location</h2>
+  <p class="location"><%= @event.location %></p>
+</div>
 
 <% if @event.attendees.any? %>
   <h2>Attendees (<%= @event.attendees.count %>)</h2>
-  <% @event.attendees.each do |user| %>
-    <h3>
-      <% if logged_in? && current_user?(@event.creator) && !current_user?(user) %>
-        <%= link_to "Uninvite", event_invite_path(@event, attendee: user), method: :delete %>
-      <% elsif logged_in? && !current_user?(@event.creator) && current_user?(user) %>
-        <%= link_to "Leave", event_invite_path(@event, attendee: user), method: :delete %>
-      <% end %>
-      <%= link_to user.name, user %>
-    </h3>
-  <% end %>
+  <ul class="attendees">
+    <% @event.attendees.each do |user| %>
+      <li>
+        <%= link_to user.name, user %>
+        <% if logged_in? && current_user?(@event.creator) && !current_user?(user) %>
+          <%= link_to "Uninvite", event_invite_path(@event, attendee: user), method: :delete, class: "btn btn-primary btn-right" %>
+        <% elsif logged_in? && !current_user?(@event.creator) && current_user?(user) %>
+          <%= link_to "Leave", event_invite_path(@event, attendee: user), method: :delete, class: "btn btn-primary btn-right" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <%= will_paginate @invited_users %>
 
 <% if logged_in? && current_user?(@event.creator) %>
   <h2>Invite Attendees</h2>
-  <% @uninvited_users.each do |user| %>
-    <h3>
-      <%= link_to "Invite", event_invite_index_path(@event, attendee: user), method: :post %>
-      <%= link_to user.name, user %>
-    </h3>
-  <% end %>
+  <ul class="attendees">
+    <% @uninvited_users.each do |user| %>
+      <li>
+        <%= link_to user.name, user %>
+        <%= link_to "Invite", event_invite_index_path(@event, attendee: user), method: :post, class: "btn btn-primary btn-right" %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <%= will_paginate @uninvited_users %>

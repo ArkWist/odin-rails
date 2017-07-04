@@ -1,0 +1,5 @@
+<h3><%= link_to event.title, event %></h3>
+<span>
+  <%= event.date.to_date %>
+  | Hosted by <%= link_to event.creator.name, event.creator %>
+</span>

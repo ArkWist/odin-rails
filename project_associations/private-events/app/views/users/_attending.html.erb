@@ -1,4 +1,10 @@
-<% if logged_in? && current_user?(@user) %>
-  <%= link_to "Leave", event_invite_path(event, attendee: @user), method: :delete %>
-<% end %>
-<%= link_to event.title, event %>
+<li>
+  <%= link_to event.title, event %>
+  <% if logged_in? && current_user?(@user) && !current_user?(event.creator) %>
+    <%= link_to "Leave", event_invite_path(event, attendee: @user), method: :delete, class: "btn btn-primary btn-right" %>
+  <% end %>
+  <p>
+    <%= event.date.to_date %>
+    | Hosted by <%= link_to event.creator.name, event.creator %>
+  </p>
+</li>

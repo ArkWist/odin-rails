@@ -12,7 +12,7 @@
       <%= f.label :location %>
       <%= f.text_field :location, class: 'form-control' %>
       
-      <%= f.label :date %>
+      <%= f.label :date, "Date (yyyy-mm-dd)" %>
       <%= f.date_field :date, class: 'form-control' %>
       
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
