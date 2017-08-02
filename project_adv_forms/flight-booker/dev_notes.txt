@@ -1,0 +1,199 @@
+
+FLOW
+
+  * Enter dates/airports and click "Search"
+  * Choose from list of flights
+  * Enter passenger information
+  * Enter billing information
+
+MODELS
+
+  * Airport
+    - airport code
+    - # timezone
+  * Flight
+    - origin
+    - destination
+    - start_time
+    - duration
+    - # passengers
+  * Passenger
+  * Booking
+
+SETUP
+
+  * Create Airport model
+  * Populate db/seeds.rb with Airports
+  * Create Flights model
+  * Populate db/seeds.rb with Flights
+  * Put :delete_all in db/seeds.rb
+  * Make associations
+    - Flight.first.from_airport
+    - Flight.first.to_airport
+    - Airport.first.departing_flights
+    - Airport.first.arriving_flights
+  * Seed database
+  * Make '/flights' root
+  * Create GET search form to same URL
+  * Include dropdowns
+    - From
+    - To
+    - Number of passengers
+    - Date (existing)
+  * Show searched flights at flights/index.html.erb
+  * Maintain active search form
+  * Search results go into their own form
+    - Radio button to select flight
+  * Submits to Bookings#new with GET
+
+
+
+
+
+
+
+# Private Events
+
+SETUP
+
+$ rails new private-events
+$ rails g model User name:string
+$ rails db:migrate
+$ rails g controller Users new create show
+
+PROTO SIGN-IN
+
+  Add presence/uniqueness validation to user.rb
+$ rails g controller Sessions new
+  Add login/logout sessions#new/create/destroy routes
+  Change #"should get new" sessions_c... test to login_path
+  Add signin form to sessions#new.h.erb
+  Add #create to sessions controller
+  Add #current_user and #logged_in? to sessions helper
+  Add _header with log_in/name link
+
+BASIC EVENTS
+
+$ rails g model Event title:string location:string description:text \
+                             date:datetime
+$ rails db:migrate
+$ rails g migration AddCreatorToEvent creator:references
+  Add associations to User and Event models
+$ rails db:migrate
+  Add @user assignment in users_c#show
+  Add events to User's #show page
+  
+$ rails g controller Events new create show index
+  Add Event routes
+  Add submit form to events#new.h.erb
+  Add #logged_in_user to application_c
+  Add before_action :logged_in_user to events_c
+  Make events#create use build
+  Add @event assignment in events_c#show
+  Add creator's name to events#show
+  Add all events to event#index
+
+EVENT ATTENDANCE
+
+$ rails g model Invite
+$ rails db:migrate
+$ rails g controller Invite new create show
+$ rails g migration AddAttendeeToEvent attendee:references
+$ rails g migration AddGuestToInvite event:references guest:references
+  Add associations to User, Event, and Invite models
+$ rails db:migrate
+  Add attendees to Event's #show
+  Add attended_events to User's #show
+  Add previous/upcoming events distinction to User's #show
+  Add previous/upcoming distinction to Event's #index
+  Refactor previous/upcoming into scopes
+  Add navigation links
+
+STATIC PAGES
+
+$ rails g controller StaticPages home
+
+$ rails g migration AddEmailPasswordToUser email:string password_digest:string
+$ rails g migration AddIndexToUsersEmail
+  
+CLEAN-UP
+
+  Order attendees with scope
+  Add tests for controllers
+  Make homepage user-page when signed in
+  
+-------------------------------------------------
+
+Home
+
+Private Events:          Home   Events   About  Log In
+
+     Private Events
+     
+     Sign up and host events
+     
+     Register Now!
+     
+                                                Source
+
+-------------------------------------------------
+
+User#show
+
+Private Events:          Home   Events   About  Log Out
+
+                  Name
+              Create Event
+              
+Upcoming
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+Attended
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+Attending
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+-------------------------------------------------
+
+Event#index
+
+Browse event list
+
+Upcoming
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+pages
+
+Past
+Event     Date      Location      Host     Attendees
+--       ---          ---           ---       ---
+
+pages
+
+-------------------------------------------------
+
+Event#show
+
+             Event Name
+             Hosted by:
+             
+             Edit  Cancel  Leave
+             
+About
+
+Location
+
+Attendees
+
+Uninvite  User.name
+
+pages
+
+Invitable
+
+Invite  User.name

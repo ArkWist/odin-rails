@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: one
+  destination: one
+  start_time: 2017-08-02 09:25:34
+  duration: 2017-08-02 09:25:34
+
+two:
+  origin: two
+  destination: two
+  start_time: 2017-08-02 09:25:34
+  duration: 2017-08-02 09:25:34
