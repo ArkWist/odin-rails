@@ -1,7 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  code: MyString
-
-two:
-  code: MyString
+heathrow:
+  code: LHR
+  
+narita:
+  code: NRT
