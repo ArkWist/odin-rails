@@ -40,6 +40,4 @@ class FlightTest < ActiveSupport::TestCase
     assert_not @flight.valid?
   end
   
-  
-  
 end

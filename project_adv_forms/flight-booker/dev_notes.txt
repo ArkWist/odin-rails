@@ -8,17 +8,21 @@ FLOW
 
 MODELS
 
-  * Airport
+  * Airport 
     - airport code
     - # timezone
-  * Flight
+  * Flight    >> #index
     - origin
     - destination
     - start_time
     - duration
-    - # passengers
-  * Passenger
-  * Booking
+    - has_many:   bookings
+  * Passenger >> #create
+    - name
+    - email
+  * Booking   >> #new, #create, #show
+    - belongs_to: flight
+    - has_many:   passengers
 
 SETUP
 
