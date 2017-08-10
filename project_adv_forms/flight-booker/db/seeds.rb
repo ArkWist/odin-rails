@@ -1,38 +1,33 @@
-sfo = Airport.new(code: 'SFO')
-nyc = Airport.new(code: 'NYC')
-sfo.save
-nyc.save
+Airport.delete_all
 
-Flight.create!(origin:      sfo,
-               destination: nyc,
-               start_time:  DateTime.new(2017,8,15,9,0,0),
-               duration:    6.hours.to_i)
-Flight.create!(origin:      sfo,
-               destination: nyc,
-               start_time:  DateTime.new(2017,8,15,12,0,0),
-               duration:    6.hours.to_i)
-Flight.create!(origin:      nyc,
-               destination: sfo,
-               start_time:  DateTime.new(2017,8,15,10,30,0),
-               duration:    6.hours.to_i)
-Flight.create!(origin:      nyc,
-               destination: sfo,
-               start_time:  DateTime.new(2017,8,15,13,30,0),
-               duration:    6.hours.to_i)
-               
-Flight.create!(origin:      sfo,
-               destination: nyc,
-               start_time:  DateTime.new(2017,8,16,9,0,0),
-               duration:    6.hours.to_i)
-Flight.create!(origin:      sfo,
-               destination: nyc,
-               start_time:  DateTime.new(2017,8,16,12,0,0),
-               duration:    6.hours.to_i)
-Flight.create!(origin:      nyc,
-               destination: sfo,
-               start_time:  DateTime.new(2017,8,16,10,30,0),
-               duration:    6.hours.to_i)
-Flight.create!(origin:      nyc,
-               destination: sfo,
-               start_time:  DateTime.new(2017,8,16,13,30,0),
-               duration:    6.hours.to_i)
+# Seed Airports.
+
+codes = ['SFO', 'NYC', 'NRT', 'CDG', 'LHR']
+
+codes.each do |airport|
+  Airport.create(code: airport)
+end
+
+# Seed Flights.
+
+pairs = Airport.all.to_a.slice(0, 10).permutation(2).to_a
+# .to_a[0..10].permutation ?
+
+pairs.each do |airports|
+  3.times { Flight.create(origin:      airports[0],
+                          destination: airports[1],
+                          start_time:  Time.now.to_date + rand(3).days \
+                                       + 6.hours + rand(12).hours,
+                          duration:    2.hours + rand(8).hours) }
+end
+
+# Seed Bookings
+
+Flight.all.each do |flight|
+  flight.bookings.create()
+  reservations = flight.bookings.first
+  rand(1..4).times do |i|
+    reservations.passengers.create(name:  "Name #{i}",
+                                   email: "name#{i}@example.com")
+  end
+end
