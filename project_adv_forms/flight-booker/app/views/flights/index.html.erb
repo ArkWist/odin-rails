@@ -20,6 +20,6 @@
 
 <% if @flights %>
   <% @flights.each do |flight| %>
-    <p>From: <%= flight.origin.code %>, To: <%= flight.destination.code %>, Date: <%= flight.start_date %>, Duration: <%= flight.duration %></p>
+    <p>From: <%= flight.origin.code %>, To: <%= flight.destination.code %>, Date: <%= flight.start_time %>, Duration: <%= flight.duration %></p>
   <% end %>
 <% end %>
