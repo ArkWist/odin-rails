@@ -3,16 +3,16 @@
 <%= form_tag(flights_path, method: :get) do %>
 
   <%= label_tag "From" %>
-  <%= collection_select :flight, :origin_id, Airport.all, :id, :code %>
+  <%= collection_select :flight, :origin, Airport.all, :code, :code %>
   
   <%= label_tag "To" %>
-  <%= collection_select :flight, :destination_id, Airport.all, :id, :code %>
+  <%= collection_select :flight, :destination, Airport.all, :code, :code %>
 
   <%= label_tag "Passengers" %>
-  <%= select :booking, :passengers, @passenger_count %>
+  <%= select :booking, :passengers, @passengers %>
   
   <%= label_tag "Date" %>
-  <%= select :flight, :date, @flight_dates %>
+  <%= select :flight, :date, @dates %>
   
   <%= submit_tag "Search" %>
   
@@ -20,6 +20,11 @@
 
 <% if @flights %>
   <% @flights.each do |flight| %>
-    <p>From: <%= flight.origin.code %>, To: <%= flight.destination.code %>, Date: <%= flight.start_time %>, Duration: <%= flight.duration %></p>
+    <p>
+      From: <%= flight.origin.code %>,
+      To: <%= flight.destination.code %>,
+      Date: <%= flight.date_formatted %>,
+      Time: <%= flight.time_formatted %>,
+      Duration: <%= flight.duration_formatted %></p>
   <% end %>
 <% end %>

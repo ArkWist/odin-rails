@@ -3,24 +3,30 @@ class FlightsController < ApplicationController
   end
 
   def index
-    @airports        = Airport.all.map{ |a| a.code }
-    @flight_dates    = Flight.distinct.pluck('date(start_time)')
-    @passenger_count = 1..4
+    @airports   = Airport.pluck(:code)
+    @dates      = unique_dates
+    @passengers = 1..4
     
     if params[:flight]
-      @flights = Flight.where(origin_id:      params[:flight][:origin_id],
-                              destination_id: params[:flight][:destination_id],
-                              start_time:     params[:flight][:date].to_date.beginning_of_day..params[:flight][:date].to_date.end_of_day)
-                              
-                              #'start_time BETWEEN ? AND ?', params[:flight][:date].beginning_of_day, params[:flight][:date].end_of_day)
-                              
-                              
-                              
-                              
-                              #start_time:     params[:flight][:date].to_date)
-      puts "DATETIME: #{params[:flight][:date].to_date}"
-      puts "FLIGHT DATA: #{Flight.first.start_time}"
+      @flights = Flight.where(origin:      Airport.find_by(code: params[:flight][:origin]),
+                              destination: Airport.find_by(code: params[:flight][:destination]),
+                              start_time:  dept_date.beginning_of_day..dept_date.end_of_day)
     end
 
   end
+  
+  private
+  
+    def unique_dates
+      dates = Flight.distinct.pluck('date(start_time)')
+      dates.map { |date| date.to_date.strftime(date_format) }
+    end
+    
+    def dept_date
+      date = DateTime.strptime(params[:flight][:date], date_format)
+    end
+  
+    def date_format
+      Flight.date_format
+    end
 end
