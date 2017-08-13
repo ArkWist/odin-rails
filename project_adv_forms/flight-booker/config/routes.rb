@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'bookings/new'
+  post 'bookings',    to: 'bookings#new'
 
   get 'bookings/create'
 
