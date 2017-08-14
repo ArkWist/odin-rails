@@ -1,7 +1,10 @@
 class Passenger < ApplicationRecord
-  belongs_to :booking, class_name: "Booking"
+  
+  belongs_to :booking
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :name,  presence: true
-  validates :email, presence: true
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   
 end

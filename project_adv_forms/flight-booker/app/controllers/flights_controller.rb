@@ -1,11 +1,9 @@
 class FlightsController < ApplicationController
-  def show
-  end
 
   def index
-    @airports   = Airport.pluck(:code)
-    @dates      = unique_dates
-    @passengers = 1..4
+    @airports        = Airport.pluck(:code)
+    @dates           = unique_dates
+    @passenger_count = 1..4
     
     if params[:flight]
       @flights = Flight.where(origin:      Airport.find_by(code: params[:flight][:origin]),
@@ -18,7 +16,7 @@ class FlightsController < ApplicationController
   private
   
     def unique_dates
-      dates = Flight.distinct.pluck('date(start_time)')
+      dates = Flight.order(start_time: :asc).distinct.pluck('date(start_time)')
       dates.map { |date| date.to_date.strftime(date_format) }
     end
     
@@ -29,4 +27,5 @@ class FlightsController < ApplicationController
     def date_format
       Flight.date_format
     end
+    
 end

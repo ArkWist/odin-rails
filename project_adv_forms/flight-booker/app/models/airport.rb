@@ -1,4 +1,5 @@
 class Airport < ApplicationRecord
+  
   has_many :departing_flights, class_name:  "Flight",
                                foreign_key: :origin_id,
                                dependent:   :destroy
@@ -7,4 +8,5 @@ class Airport < ApplicationRecord
                                dependent:   :destroy
   
   validates :code, presence: true
+  
 end

@@ -1,22 +1,17 @@
 Rails.application.routes.draw do
   
-  get 'bookings/new'
-  post 'bookings',    to: 'bookings#new'
-
-  get 'bookings/create'
-
-  get 'bookings/show'
+  root 'flights#index'
+  
+  get  'flights',  to: 'flights#index'
+  
+  get  'bookings', to: 'bookings#new'
+  post 'bookings', to: 'bookings#create'
 
   get 'passengers/create'
-
   get 'passenger/create'
 
-  root 'flights#index'
-  get  '/flights',     to: 'flights#index'
-
-
-  get 'flights/show'
-  get 'flights/index'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :flights,    only: [:index]
+  resources :bookings,   only: [:new, :create, :show]
+  resources :passengers, only: [:create]
+  
 end
