@@ -51,6 +51,9 @@ SETUP
   * Submits to Bookings#new with GET
 
 
+  Make passengers validate when submitting booking form
+
+
 
   <%= label_tag "From" %>
   <%= select :flight, :origin, @airports %>

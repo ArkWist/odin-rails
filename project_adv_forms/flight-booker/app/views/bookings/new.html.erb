@@ -2,15 +2,15 @@
 
 <%= form_for @booking do |f| %>
 
-  <%= f.fields_for :passengers do |passenger_form| %> 
+  <%= f.fields_for :passengers do |p| %> 
   
-    <%= passenger_form.label :title, "Passenger #{passenger_form.options[:child_index] + 1}" %>
+    <%= p.label :title, "Passenger #{p.options[:child_index] + 1}" %>
     
-    <%= passenger_form.label :name %>
-    <%= passenger_form.text_field :name, class: 'form-control' %>
+    <%= p.label :name %>
+    <%= p.text_field :name, class: 'form-control' %>
     
-    <%= passenger_form.label :email %>
-    <%= passenger_form.email_field :email, class: 'form-control' %>
+    <%= p.label :email %>
+    <%= p.email_field :email, class: 'form-control' %>
     
   <% end %>
   
