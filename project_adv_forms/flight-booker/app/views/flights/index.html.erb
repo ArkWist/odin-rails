@@ -1,6 +1,6 @@
 <h1>Flights</h1>
 
-<%= form_tag(flights_path, method: :get) do %>
+<%= form_tag flights_path, method: :get do %>
 
   <%= label_tag "From" %>
   <%= collection_select :flight, :origin, Airport.all, :code, :code %>
@@ -19,7 +19,7 @@
 <% end %>
 
 <% if @flights %>
-  <%= form_tag(bookings_path, method: :get) do %>
+  <%= form_tag bookings_path, method: :get do %>
     <table>
       
       <thead>
@@ -41,7 +41,7 @@
       <% end %>
       
     </table>
-    <%= hidden_field_tag(:passengers, params[:booking][:passengers]) %>
+    <%= hidden_field_tag :passengers, params[:booking][:passengers] %>
     <%= submit_tag "Select" %>
   <% end %>
 <% end %>

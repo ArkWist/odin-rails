@@ -2,19 +2,24 @@
 
 <%= form_for @booking do |f| %>
 
-  <%= f.fields_for :passengers do |p| %> 
+  <% @passenger_count.times do |n| %>
+
+    <%= f.fields_for :passengers, @booking.passengers.build do |p| %> 
+    
+      <%= p.label :title, "Passenger #{n + 1}" %>
+      
+      <%= p.label :name %>
+      <%= p.text_field :name, class: 'form-control' %>
+      
+      <%= p.label :email %>
+      <%= p.email_field :email, class: 'form-control' %>
+      
+    <% end %>
   
-    <%= p.label :title, "Passenger #{p.options[:child_index] + 1}" %>
-    
-    <%= p.label :name %>
-    <%= p.text_field :name, class: 'form-control' %>
-    
-    <%= p.label :email %>
-    <%= p.email_field :email, class: 'form-control' %>
-    
   <% end %>
   
-  <%= f.hidden_field :flight_id, value: @flight.id %>
+  <%= f.hidden_field :flight_id,  value: @flight.id %>
+  
   <%= f.submit "Make Reservation", class: "btn btn-primary" %>
   
 <% end %>

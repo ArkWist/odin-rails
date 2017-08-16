@@ -23,11 +23,11 @@ end
 
 # Seed Bookings
 
-Flight.all.each do |flight|
+Flight.all.each_with_index do |flight, f|
   flight.bookings.create()
   reservations = flight.bookings.first
   rand(1..4).times do |i|
     reservations.passengers.create(name:  "Name #{i}",
-                                   email: "name#{i}@example.com")
+                                   email: "name#{i}_#{f}@example.com")
   end
 end
