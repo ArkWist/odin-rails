@@ -50,34 +50,11 @@ SETUP
     - Radio button to select flight
   * Submits to Bookings#new with GET
 
+TESTS
 
-  Make passengers validate when submitting booking form
-
-
-
-  <%= label_tag "From" %>
-  <%= select :flight, :origin, @airports %>
-  <%= collection_select :flight, :origin_id, Airport.all, :id, :code %>
-  
-  <%= label_tag "To" %>
-  <%= select :flight, :destination, @airports %>
-  <%= collection_select :flight, :destination_id, Airport.all, :id, :code %>
-
-
-<%= form_with url: flights_path, method: :get do |f| %>
-
-  <%= f.label "From" %>
-  <%= f.collection_select :flight, :origin_id, :airports, :id, :code %>
-
-<% end %>
-
-
-
-  <%= form_for @booking do |f| %>
-  
-    <% @flights.each do |flight| %>
-  
-      <%= f.hidden_field_tag :passengers, params[:flight][:passengers] %>
-    
-      <%= f.radio_button :flight_id, flight.id %>
-      <%= label_tag "From"
+  * Passenger Model
+  * Flight Controller
+  * Booking Controller
+  * Flight search integration test
+  * Booking form integration test
+  * Booking placed integration test
