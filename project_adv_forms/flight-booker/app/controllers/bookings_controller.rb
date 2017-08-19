@@ -23,6 +23,10 @@ class BookingsController < ApplicationController
     @booking    = Booking.find(params[:id])
     @flight     = Flight.find(@booking.flight_id)
     @passengers = @booking.passengers
+    
+    @date       = @flight.date_formatted
+    @time       = @flight.time_formatted
+    @duration   = @flight.duration / 3600
   end
   
   private
