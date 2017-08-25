@@ -1,20 +1,22 @@
-<h1>Flights</h1>
+<% provide(:title, "Search") %>
+
+<h1>Search Flights</h1>
 
 <%= form_tag flights_path, method: :get do %>
 
   <%= label_tag "From" %>
-  <%= collection_select :flight, :origin, Airport.all, :code, :code %>
+  <%= collection_select :flight, :origin, Airport.all, :code, :code, class: 'form-control' %>
   
   <%= label_tag "To" %>
-  <%= collection_select :flight, :destination, Airport.all, :code, :code %>
+  <%= collection_select :flight, :destination, Airport.all, :code, :code, class: 'form-control' %>
 
   <%= label_tag "Passengers" %>
-  <%= select :booking, :passengers, @passenger_count %>
+  <%= select :booking, :passengers, @passenger_count, class: 'form-control' %>
   
   <%= label_tag "Date" %>
-  <%= select :flight, :date, @dates %>
+  <%= select :flight, :date, @dates, class: 'form-control' %>
   
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search Flights", class: "btn btn-primary" %>
   
 <% end %>
 
@@ -42,6 +44,6 @@
       
     </table>
     <%= hidden_field_tag :passengers, params[:booking][:passengers] %>
-    <%= submit_tag "Select" %>
+    <%= submit_tag "Select Flight", class: "btn btn-primary"  %>
   <% end %>
 <% end %>

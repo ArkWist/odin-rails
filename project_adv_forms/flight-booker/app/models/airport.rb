@@ -7,7 +7,7 @@ class Airport < ApplicationRecord
                                foreign_key: :destination_id,
                                dependent:   :destroy
   
-  default_scope -> { order(code: :desc) }
+  default_scope { order(code: :desc) }
   
   validates :code, presence: true
   

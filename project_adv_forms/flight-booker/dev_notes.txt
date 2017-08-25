@@ -1,60 +1,16 @@
+# Tests
 
-FLOW
+  * Flight search
+  * Airport code order
+  
+# Other
 
-  * Enter dates/airports and click "Search"
-  * Choose from list of flights
-  * Enter passenger information
-  * Enter billing information
+  * Bootstrap classes to pages
+  * CSS
+  * Keep form submit data on search
+  
+----
 
-MODELS
+# Bootstrap
 
-  * Airport 
-    - airport code
-    - # timezone
-  * Flight    >> #index
-    - origin
-    - destination
-    - start_time
-    - duration
-    - has_many:   bookings
-  * Passenger >> #create
-    - name
-    - email
-  * Booking   >> #new, #create, #show
-    - belongs_to: flight
-    - has_many:   passengers
-
-SETUP
-
-  * Create Airport model
-  * Populate db/seeds.rb with Airports
-  * Create Flights model
-  * Populate db/seeds.rb with Flights
-  * # Put :delete_all in db/seeds.rb
-  * Make associations
-    - Flight.first.from_airport
-    - Flight.first.to_airport
-    - Airport.first.departing_flights
-    - Airport.first.arriving_flights
-  * Seed database
-  * Make '/flights' root
-  * Create GET search form to same URL
-  * Include dropdowns
-    - From
-    - To
-    - Number of passengers
-    - Date (existing)
-  * Show searched flights at flights/index.html.erb
-  * Maintain active search form
-  * Search results go into their own form
-    - Radio button to select flight
-  * Submits to Bookings#new with GET
-
-TESTS
-
-  * Passenger Model
-  * Flight Controller
-  * Booking Controller
-  * Flight search integration test
-  * Booking form integration test
-  * Booking placed integration test
+  * 
