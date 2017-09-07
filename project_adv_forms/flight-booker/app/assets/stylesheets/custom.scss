@@ -115,3 +115,9 @@ input {
     color: $state-danger-text;
   }
 }
+
+/* tables */
+
+.flight-table td, .flight-table th {
+  padding: 2px 10px;
+}
