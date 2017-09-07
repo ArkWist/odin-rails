@@ -32,3 +32,5 @@ Completed projects from [The Odin Project](http://www.theodinproject.com/)'s *[R
 - [Members Only](project_authentication/members-only)
 - [Data Model Scenarios](project_associations/scenarios)
 - [Private Events](project_associations/private-events) ([online](https://odin-private-event.herokuapp.com/))
+- [Flight Booker](project_adv_forms/flight-booker) ([online](https://odin-flight-searcher.herokuapp.com/))
+
