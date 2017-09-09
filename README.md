@@ -1,6 +1,6 @@
 # Ruby on Rails Projects
 
-Completed projects from [The Odin Project](http://www.theodinproject.com/)'s *[Ruby on Rails](http://www.theodinproject.com/ruby-on-rails)* course.
+Completed projects from [The Odin Project](https://www.theodinproject.com/)'s *[Ruby on Rails](https://www.theodinproject.com/ruby-on-rails)* course.
 
 ## Project List
 
@@ -34,3 +34,6 @@ Completed projects from [The Odin Project](http://www.theodinproject.com/)'s *[R
 - [Private Events](project_associations/private-events) ([online](https://odin-private-event.herokuapp.com/))
 - [Flight Booker](project_adv_forms/flight-booker) ([online](https://odin-flight-searcher.herokuapp.com/))
 
+#### APIs, Mailers, and Advanced Topics
+- [Kittens](project_apis/kittens)
+- [Flickr Feed](project_apis/flickr-feed)
