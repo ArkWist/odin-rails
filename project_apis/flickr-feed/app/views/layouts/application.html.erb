@@ -10,5 +10,8 @@
 
   <body>
     <%= yield %>
+    
+    <%= render_flickr_sidebar_widget(ENV["flickr_my_id"]) %>
+    
   </body>
 </html>
