@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 
 gem 'figaro'
+gem 'flickraw'
 
 
 group :development, :test do
