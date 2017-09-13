@@ -1,0 +1,13 @@
+<%= form_tag('/', method: :get) do %>
+  <%= text_field_tag :user, nil, placeholder: "User ID" %>
+  <%= submit_tag "Show Pictures", name: nil %>
+<% end %>
+
+<p><%= params[:user].to_s %></p>
+
+<% if params[:user].to_s =~ /\A\d+@N\d\d\z/ %>
+  <%= render_flickr_sidebar_widget(params[:user]) %>
+<% else %>
+  <% id = get_name_id(params[:user])["nsid"] %>
+  <%= render_flickr_sidebar_widget(id) %>
+<% end %>
