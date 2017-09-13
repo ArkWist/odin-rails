@@ -6,8 +6,10 @@
 <p><%= params[:user].to_s %></p>
 
 <% if params[:user].to_s =~ /\A\d+@N\d\d\z/ %>
+  <% puts "formatted name" %>
   <%= render_flickr_sidebar_widget(params[:user]) %>
 <% else %>
+  <% puts "unformatted name" %>
   <% id = get_name_id(params[:user])["nsid"] %>
   <%= render_flickr_sidebar_widget(id) %>
 <% end %>

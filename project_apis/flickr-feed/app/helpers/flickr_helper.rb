@@ -20,9 +20,9 @@ module FlickrHelper
       puts "step 2"
       render :partial => '/flickr/sidebar_widget',
              :locals  => { :photos => photos }
-    rescue Exception
-      puts "step 3"
-      render :partial => '/flickr/unavailable'
+    #rescue Exception
+    #  puts "step 3"
+    #  render :partial => '/flickr/unavailable'
     end
   end
   
