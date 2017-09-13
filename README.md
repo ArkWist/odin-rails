@@ -36,4 +36,4 @@ Completed projects from [The Odin Project](https://www.theodinproject.com/)'s *[
 
 #### APIs, Mailers, and Advanced Topics
 - [Kittens](project_apis/kittens)
-- [Flickr Feed](project_apis/flickr-feed)
+- ~~[Flickr Feed](project_apis/flickr-feed)~~
