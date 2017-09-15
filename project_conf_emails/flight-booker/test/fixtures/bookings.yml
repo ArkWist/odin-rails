@@ -1,0 +1,5 @@
+heathrow_morning:
+  flight: nrt_to_lhr_am
+  
+heathrow_evening:
+  flight: nrt_to_lhr_pm

@@ -1,0 +1,14 @@
+<% provide(:title, "Your Booking") %>
+
+<h1>Your Booking</h1>
+
+<p>Origin: <%= @flight.origin.code %></p>
+<p>Destination: <%= @flight.destination.code %></p>
+<p>Date: <%= @date %></p>
+<p>Time: <%= @time %></p>
+<p>Duration: <%= @duration %> hours</p>
+
+<% @passengers.each do |p| %>
+  <p>Name: <%= p.name %></p>
+  <p>Email: <%= p.email %></p>
+<% end %>

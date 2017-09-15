@@ -1,0 +1,11 @@
+nrt_to_lhr_am:
+  origin:      narita
+  destination: heathrow
+  start_time:  <%= DateTime.new(2017,8,15,6,0,0) %>
+  duration:    <%= 10.hours.to_i %>
+
+nrt_to_lhr_pm:
+  origin:      narita
+  destination: heathrow
+  start_time:  <%= DateTime.new(2017,8,15,21,0,0) %>
+  duration:    <%= 10.hours.to_i + 30.minutes.to_i %>

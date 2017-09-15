@@ -1,0 +1,51 @@
+<% provide(:title, "Search") %>
+
+<h1>Search Flights</h1>
+
+<%= form_tag flights_path, method: :get do %>
+
+  <%= label_tag "From" %>
+  <%= collection_select :flight, :origin, Airport.all, :code, :code, class: 'form-control' %>
+  
+  <%= label_tag "To" %>
+  <%= collection_select :flight, :destination, Airport.all, :code, :code, class: 'form-control' %>
+
+  <%= label_tag "Passengers" %>
+  <%= select :booking, :passengers, @passenger_count, class: 'form-control' %>
+  
+  <%= label_tag "Date" %>
+  <%= select :flight, :date, @dates, class: 'form-control' %>
+  
+  <%= submit_tag "Search Flights", class: "btn btn-primary" %>
+  
+<% end %>
+
+<% if @flights %>
+  <%= form_tag new_booking_path, method: :get do %>
+    <table class="flight-table">
+      
+      <thead class="table-heading">
+        <th></th>
+        <th>Departing</th>
+        <th>Arriving</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Duration</th>
+      </thead>
+      
+      <% @flights.each do |flight| %>
+        <tr>
+          <td class="flight-id">       <%= radio_button_tag :flight_id, flight.id %></td>
+          <td class="origin-code">     <%= flight.origin.code %></td>
+          <td class="destination-code"><%= flight.destination.code %></td>
+          <td class="departure-date">  <%= flight.date_formatted %></td>
+          <td class="departure-time">  <%= flight.time_formatted %></td>
+          <td class="duration">        <%= flight.duration_formatted %></td>
+        </tr>
+      <% end %>
+      
+    </table>
+    <%= hidden_field_tag :passengers, params[:booking][:passengers] %>
+    <%= submit_tag "Select Flight", class: "btn btn-success"  %>
+  <% end %>
+<% end %>

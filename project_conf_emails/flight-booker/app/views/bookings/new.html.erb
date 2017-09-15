@@ -1,0 +1,24 @@
+<% provide(:title, "Make Booking") %>
+
+<h1>Make Booking</h1>
+
+<%= form_for @booking, url: bookings_path do |f| %>
+
+  <% @passenger_count.times do |n| %>
+    <%= f.fields_for :passengers, @booking.passengers.build do |p| %> 
+    
+      <%= p.label :title, "Passenger #{n + 1}" %>
+      
+      <%= p.label :name %>
+      <%= p.text_field :name, class: 'form-control' %>
+      
+      <%= p.label :email %>
+      <%= p.email_field :email, class: 'form-control' %>
+      
+    <% end %>
+  <% end %>
+  
+  <%= f.hidden_field :flight_id,  value: @flight.id %>
+  <%= f.submit "Make Reservation", class: "btn btn-primary btn-lg" %>
+  
+<% end %>

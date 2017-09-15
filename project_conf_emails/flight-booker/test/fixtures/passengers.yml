@@ -1,0 +1,9 @@
+june:
+  booking: heathrow_morning
+  name:    June
+  email:   june2@example.com
+
+ace:
+  booking: heathrow_morning
+  name:    Ace
+  email:   ace5@example.com
