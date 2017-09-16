@@ -9,6 +9,7 @@ class Booking < ApplicationRecord
   validates_associated :passengers
   accepts_nested_attributes_for :passengers, reject_if: :all_blank
   
+  # prevents seeds from working
   validates :passengers, presence: true
   
 end

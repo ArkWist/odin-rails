@@ -30,4 +30,5 @@ Flight.all.each_with_index do |flight, f|
     reservations.passengers.create(name:  "Name #{i}",
                                    email: "name#{i}_#{f}@example.com")
   end
+  
 end

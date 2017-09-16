@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     @booking = Booking.create(booking_params)
     if @booking.save
       flash[:success] = "Flight booked!"
+      send_booking_confirmation
       redirect_to @booking
     else
       flash.now[:danger] = "Invalid passenger information."
@@ -33,6 +34,12 @@ class BookingsController < ApplicationController
   
     def booking_params
       params.require(:booking).permit(:flight_id, passengers_attributes: [:name, :email])
+    end
+    
+    def send_booking_confirmation
+      @booking.passengers.each do |passenger|
+        PassengerMailer.booking_email(passenger).deliver_now
+      end
     end
   
 end
