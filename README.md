@@ -32,7 +32,7 @@ Completed projects from [The Odin Project](https://www.theodinproject.com/)'s *[
 - [Members Only](project_authentication/members-only)
 - [Data Model Scenarios](project_associations/scenarios)
 - [Private Events](project_associations/private-events) ([online](https://odin-private-event.herokuapp.com/))
-- [Flight Booker](project_adv_forms/flight-booker) ([online](https://odin-flight-searcher.herokuapp.com/)) (currently not working)
+- [Flight Booker](project_adv_forms/flight-booker) ([online](https://odin-flight-searcher.herokuapp.com/): currently not working)
 
 #### APIs, Mailers, and Advanced Topics
 - [Kittens](project_apis/kittens)
