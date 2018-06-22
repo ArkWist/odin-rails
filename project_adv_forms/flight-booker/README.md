@@ -1,5 +1,24 @@
-# Flight Booker
+# README
 
-Books flights for users between airports. Search flights by airports and date. Inquires also about passenger number and names.
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-Written for [The Odin Project](http://www.theodinproject.com/). See **[Projects: Building Advanced Forms](https://www.theodinproject.com/courses/ruby-on-rails/lessons/building-advanced-forms)** for details.
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
