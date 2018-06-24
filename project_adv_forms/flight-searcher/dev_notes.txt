@@ -1,0 +1,23 @@
+heroku git:remote -a odin-flight-searcher
+
+git subtree push --prefix project_adv_forms/flight-searcher heroku master
+
+git push heroku `git subtree split --prefix project_adv_forms/flight-booker refresh`:master
+
+heroku run rails db:migrate
+
+-------------------------------------------
+
+PROCESS
+
+$ rails new flight-searcher
+  setup gemfile
+  make test controller
+  check works on heroku
+
+
+MODELS
+
+$ rails g model Airport iata:string
+  make airports in db/seeds.rb
+$ rails g model Flight origin:references destination:references departure:datetime arrival:datetime
