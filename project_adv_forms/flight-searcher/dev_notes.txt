@@ -21,3 +21,8 @@ MODELS
 $ rails g model Airport iata:string
   make airports in db/seeds.rb
 $ rails g model Flight origin:references destination:references departure:datetime arrival:datetime
+
+
+
+
+heroku pg:reset DATABASE
