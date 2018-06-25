@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_06_24_020401) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "airports", force: :cascade do |t|
     t.string "iata"
     t.datetime "created_at", null: false

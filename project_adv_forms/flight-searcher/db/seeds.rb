@@ -1,4 +1,5 @@
 Airport.delete_all
+Flight.delete_all
 
 # Seed Airports
 
