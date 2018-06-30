@@ -10,29 +10,33 @@ heroku pg:reset DATABASE
 
 -------------------------------------------
 
-CREATE
+SETUP
 
 $ rails new flight-searcher
   setup gemfile
   make test controller
   check works on heroku
 
-MODELS
+AIRPORTS
 
 $ rails g model Airport iata:string
   make airports in db/seeds.rb
 $ rails g model Flight origin:references destination:references departure:datetime arrival:datetime
 
-CONTROLLERS
+FLIGHTS
 
 $ rails g controller Flights new index
   make search form
   show search results
   
+BOOKINGS
+
+$ rails g model Passenger name:string email:string booking:references
+$ rails g model Booking flight:references
+$ rails g controller Passengers create
+$ rails g controller Bookings new create show
 
 
 
-
-# add uniqueness at database level at some point
-# add indices for items to search by
-# make it so drop-downs don't reset on every submit
+# add uniqueness at database level at some point (emails)
+# add indices for items to search by (like iata)
