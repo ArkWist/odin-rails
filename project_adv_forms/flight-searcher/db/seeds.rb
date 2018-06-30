@@ -12,7 +12,7 @@ end
 
 pairs = Airport.all.to_a.slice(0, 10).permutation(2).to_a
 pairs.each do |pair|
-  3.times do
+  6.times do
     depart = Time.now.to_date + rand(3).days + 6.hours + rand(12).hours
     Flight.create(origin:      pair[0],
                   destination: pair[1],

@@ -1,18 +1,16 @@
 class FlightsController < ApplicationController
-  
-  def new
-  end
 
   def index
     @airports   = Airport.pluck(:iata)
     @departures = unique_departures
     @group_cap  = 4
     
-    if params[:flight]
-      @flights = Flight.where(
-        origin:      Airport.find_by(iata: params[:flight][:origin]),
-        destination: Airport.find_by(iata: params[:flight][:destination]),
-        departure:   chosen_date.beginning_of_day..chosen_date.end_of_day)
+    if params[:search]
+      @search_results = Flight.where(
+        origin:      Airport.find_by(iata: params[:search][:origin]),
+        destination: Airport.find_by(iata: params[:search][:destination]),
+        departure:   departure_date).order(departure: :asc)
+      @passengers = params[:search][:passengers]
     end
     
   end
@@ -24,10 +22,12 @@ class FlightsController < ApplicationController
       departures.map { |date| date.strftime(Flight.date_format) }
     end
     
-    def chosen_date
-      puts params[:flight][:date]
-      #departure = Time.strptime(params[:flight][:date], '%d-%m-%Y')
-      date = Time.parse(params[:flight][:date])
+    def departure_date
+      search_date.beginning_of_day..search_date.end_of_day
+    end
+    
+    def search_date
+      date = Time.parse(params[:search][:date])
     end
   
 end

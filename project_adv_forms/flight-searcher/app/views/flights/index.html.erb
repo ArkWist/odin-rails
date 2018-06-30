@@ -5,43 +5,47 @@
 <%= form_tag flights_path, method: :get do %>
 
   <%= label_tag "From" %>
-  <%= collection_select :flight, :origin, Airport.all, :iata, :iata, class: 'form-control' %>
+  <%= collection_select :search, :origin, Airport.all, :iata, :iata, class: 'form-control',
+      selected: !params[:search].blank? && params[:search][:origin] %>
   
   <%= label_tag "To" %>
-  <%= collection_select :flight, :destination, Airport.all, :iata, :iata, class: 'form-control' %>
+  <%= collection_select :search, :destination, Airport.all, :iata, :iata, class: 'form-control',
+      selected: !params[:search].blank? && params[:search][:destination] %>
 
   <%= label_tag "Passengers" %>
-  <%= select :flight, :passengers, 1..@group_cap, class: 'form-control' %>
+  <%= select :search, :passengers, 1..@group_cap, class: 'form-control',
+  selected: !params[:search].blank? && params[:search][:passengers] %>
   
   <%= label_tag "Date" %>
-  <%= select :flight, :date, @departures, class: 'form-control' %>
+  <%= select :search, :date, @departures, class: 'form-control',
+  selected: !params[:search].blank? && params[:search][:date] %>
   
   <%= submit_tag "Search Flights", class: "btn btn-primary" %>
   
 <% end %>
 
-<% if @flights %>
-    <table class="flight-table">
-      
-      <thead class="table-heading">
-        <th></th>
-        <th>Departing</th>
-        <th>Arriving</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Duration</th>
-      </thead>
-      
-      <% @flights.each do |flight| %>
-        <tr>
-          <td class="flight-id">       <%= radio_button_tag :flight_id, flight.id %></td>
-          <td class="origin-code">     <%= flight.origin.iata %></td>
-          <td class="destination-code"><%= flight.destination.iata %></td>
-          <td class="departure-date">  <%= flight.departure_date %></td>
-          <td class="departure-time">  <%= flight.departure_time %></td>
-          <td class="duration">        <%= flight.duration %></td>
-        </tr>
-      <% end %>
-      
-    </table>
+<% if @search_results %>
+  <table class="flight-table">
+    
+    <thead class="table-heading">
+      <th></th>
+      <th>Departing</th>
+      <th>Arriving</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Duration</th>
+    </thead>
+    
+    <% @search_results.each do |flight| %>
+      <tr>
+        <td class="flight-id">       <%= radio_button_tag :flight_id, flight.id %></td>
+        <td class="origin-code">     <%= flight.origin.iata %></td>
+        <td class="destination-code"><%= flight.destination.iata %></td>
+        <td class="departure-date">  <%= flight.departure_date %></td>
+        <td class="departure-time">  <%= flight.departure_time %></td>
+        <td class="duration">        <%= flight.duration %></td>
+      </tr>
+    <% end %>
+    
+  </table>
 <% end %>
