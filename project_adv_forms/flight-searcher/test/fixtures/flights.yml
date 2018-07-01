@@ -1,13 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+nrt_to_fra_am:
+  origin:      narita
+  destination: frankfurt
+  departure:   <%= Time.new(2018,8,15,6,0,0) %>
+  arrival:     <%= Time.new(2018,8,15,16,0,0) %>
 
-#one:
-#  origin: one
-#  destination: one
-#  departure: 2018-06-24 11:04:01
-#  arrival: 2018-06-24 11:04:01
-#
-#two:
-#  origin: two
-#  destination: two
-#  departure: 2018-06-24 11:04:01
-#  arrival: 2018-06-24 11:04:01
+nrt_to_fra_pm:
+  origin:      narita
+  destination: frankfurt
+  departure:   <%= Time.new(2018,8,15,21,0,0) %>
+  arrival:     <%= Time.new(2018,8,16,7,30,0) %>

@@ -1,24 +1,5 @@
-# README
+# Flight Searcher
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Books flights for users between airports. Search flights by airports and dates. Bookings require passenger information.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Written for [The Odin Project](http://www.theodinproject.com/). See **[Projects: Building Advanced Forms](https://www.theodinproject.com/courses/ruby-on-rails/lessons/building-advanced-forms)** for details.

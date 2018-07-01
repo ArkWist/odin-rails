@@ -1,7 +1,30 @@
 require 'test_helper'
 
 class PassengerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @june = passengers(:june)
+    @ace  = passengers(:ace) 
+  end
+  
+  test "should be valid" do
+    assert @june.valid?
+  end
+  
+  test "name should be present" do
+    @june.name = "   "
+    assert_not @june.valid?
+  end
+  
+  test "email should be present" do
+    @june.email = "   "
+    assert_not @june.valid?
+  end
+  
+  test "email should be lowercase" do
+    mixed_case_email = "zErO@eXaMpLe.CoM"
+    @june.email = mixed_case_email
+    @june.save
+    assert_equal mixed_case_email.downcase, @june.reload.email
+  end
+  
 end

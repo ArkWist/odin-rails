@@ -1,9 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  flight: one
-  passenger: one
-
-two:
-  flight: two
-  passenger: two
+frankfurt_morning:
+  flight: nrt_to_fra_am
+  
+frankfurt_evening:
+  flight: nrt_to_fra_pm

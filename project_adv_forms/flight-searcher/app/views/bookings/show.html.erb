@@ -1,2 +1,39 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<% provide(:title, "Your Booking") %>
+
+<h1>Your Booking</h1>
+
+<h2>Flight Information</h2>
+
+<table class="flight-table">
+  <thead class="table-heading">
+    <th>Departing</th>
+    <th>Arriving</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Duration</th>
+  </thead>
+  
+  <tr>
+    <td class="origin-code">     <%= @flight.origin.iata %></td>
+    <td class="destination-code"><%= @flight.destination.iata %></td>
+    <td class="departure-date">  <%= @flight.departure_date %></td>
+    <td class="departure-time">  <%= @flight.departure_time %></td>
+    <td class="duration">        <%= @flight.duration %></td>
+  </tr>
+</table>
+
+<h2>Passengers</h2>
+
+<table class="passenger-table">
+  <thead class="table-heading">
+    <th>Name</th>
+    <th>Email</th>
+  </thead>
+  
+  <% @passengers.each do |passenger| %>
+    <tr>
+      <td class="passenger-name">  <%= passenger.name %></td>
+      <td class="passenger-email"> <%= passenger.email %></td>
+    </tr>
+  <% end %>
+</table>

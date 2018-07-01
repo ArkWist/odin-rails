@@ -1,9 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+june:
+  booking: frankfurt_morning
+  name:    June
+  email:   june2@example.com
 
-one:
-  name: MyString
-  email: MyString
-
-two:
-  name: MyString
-  email: MyString
+ace:
+  booking: frankfurt_morning
+  name:    Ace
+  email:   ace5@example.com

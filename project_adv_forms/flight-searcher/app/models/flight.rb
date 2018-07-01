@@ -8,22 +8,12 @@ class Flight < ApplicationRecord
   validates :departure,   presence: true
   validates :arrival,     presence: true
   
-  validate :time_consistency
+  validate :times_consistent?
   
-  def time_consistency
-    if self.arrival.to_i <= self.departure.to_i
-      errors.add(:arrival, 'must be later than departure') 
-    end
-  end
-
   def self.date_format
     format = "%d/%m/%Y"
   end
   
-
-
-
-
   def departure_date
     self.departure.strftime("%m/%d/%Y")
   end
@@ -35,6 +25,13 @@ class Flight < ApplicationRecord
   def duration
     Time.at(self.arrival - self.departure).utc.strftime("%-Hh %-Mm")
   end
-   
-
+  
+  private
+  
+    def times_consistent?
+      if self.arrival.to_i <= self.departure.to_i
+        errors.add(:arrival, 'must be later than departure') 
+      end
+    end
+    
 end

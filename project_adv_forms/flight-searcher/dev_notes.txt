@@ -35,8 +35,3 @@ $ rails g model Passenger name:string email:string booking:references
 $ rails g model Booking flight:references
 $ rails g controller Passengers create
 $ rails g controller Bookings new create show
-
-
-
-# add uniqueness at database level at some point (emails)
-# add indices for items to search by (like iata)

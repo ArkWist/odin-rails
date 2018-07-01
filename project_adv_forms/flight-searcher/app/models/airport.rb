@@ -9,7 +9,7 @@ class Airport < ApplicationRecord
   
   default_scope { order(iata: :desc) }
   
-  validates :iata, presence: true,
-            uniqueness: { case_sensitive: false }
+  validates :iata, presence:   true,
+                   uniqueness: { case_sensitive: false }
   
 end

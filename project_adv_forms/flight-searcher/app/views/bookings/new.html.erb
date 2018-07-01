@@ -10,10 +10,12 @@
       <%= p.label :title, "Passenger #{n + 1}" %>
       
       <%= p.label :name %>
-      <%= p.text_field :name, class: 'form-control' %>
+      <%= p.text_field :name, class: 'form-control',
+          value: params[:booking] && params[:booking][:passengers_attributes][n.to_s][:name] %>
       
       <%= p.label :email %>
-      <%= p.email_field :email, class: 'form-control' %>
+      <%= p.email_field :email, class: 'form-control',
+          value: params[:booking] && params[:booking][:passengers_attributes][n.to_s][:email] %>
       
     <% end %>
   <% end %>
